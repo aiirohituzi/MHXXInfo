@@ -1,11 +1,15 @@
 <template>
-    <div>
-        <h2>
-            {{ quests[0].questName }}
-        </h2>
-        {{ quests[0].contents }}
-        {{ quests[0].condition }}
-        {{ quests[0].reward }}
+    <div class="container">
+        <ul class="list-group" v-for="quest in quests">
+            <li class="list-group-item">
+                <h2>
+                    {{ quest.questName }}
+                </h2>
+                {{ quest.contents }}
+                {{ quest.condition }}
+                {{ quest.reward }}
+            </li>
+        </ul>
     </div>
 </template>
 
@@ -30,7 +34,7 @@ export default {
         fetchQeusts: function () {
             axios.get('http://localhost:8000/quest').then((response) => {
                 this.quests = response.data
-                console.log(quests)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
