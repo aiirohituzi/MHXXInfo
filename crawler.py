@@ -37,7 +37,17 @@ for i in range(3, 8):
         'questMap' : questMap[0].text
     })
 
-data = json.dumps(data, indent=4)
+# data = json.dumps(data, indent=4)
 print(data)
+
+
+
+f = open("data.txt", 'w', encoding='utf8')
+
+for q in data:
+    print(q.get('questName'))
+    print(q.get('questMap'))
+    f.write(q.get('questName') + ' / ' + q.get('questMap') + '\n')
+f.close()
 
 driver.close()
