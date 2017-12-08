@@ -2,13 +2,13 @@
 
 퀘스트 이름(등급포함)	#main_1 > div > div.row_x > div.col-md-10 > h3
 퀘스트이름		#id219133 > td
-퀘스트맵			#main_1 > div > div.row_x > div.col-md-10 > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(4) > a
-제한시간			#main_1 > div > div.row_x > div.col-md-10 > table:nth-child(3) > tbody > tr:nth-child(1) > td:nth-child(6)
-보수금			#main_1 > div > div.row_x > div.col-md-10 > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(2)
-서브보수금		#main_1 > div > div.row_x > div.col-md-10 > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(4)
-계약금			#main_1 > div > div.row_x > div.col-md-10 > table:nth-child(3) > tbody > tr:nth-child(2) > td:nth-child(6)
-메인조건			#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(2)
-서브조건			#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(1) > tbody > tr:nth-child(1) > td:nth-child(4)
+퀘스트맵			#main_1 > div > div.row_x > div.col-md-10 > table:nth-of-type(2) > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > a
+제한시간			#main_1 > div > div.row_x > div.col-md-10 > table:nth-of-type(2) > tbody > tr:nth-of-type(1) > td:nth-of-type(3)
+보수금			#main_1 > div > div.row_x > div.col-md-10 > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(1)
+서브보수금		#main_1 > div > div.row_x > div.col-md-10 > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(2)
+계약금			#main_1 > div > div.row_x > div.col-md-10 > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(3)
+메인조건			#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(1) > td:nth-of-type(1)
+서브조건			#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(1) > td:nth-of-type(2)
 메인보수			#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(2)
 서브보수			#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(6) > tbody > tr:nth-child(1) > td:nth-child(4)
 
