@@ -12,8 +12,15 @@ def getQuest(request):
             'questName': q.questName,
             'rating': q.rating,
             'contents': q.contents,
-            'condition': q.condition,
-            'reward': q.reward,
+            'questMap': q.questMap,
+            'questTime': q.questTime,
+            'condition_main': q.condition_main,
+            'condition_sum': q.condition_sub,
+            'down_payment': q.down_payment,
+            'rewardMoney_main': q.rewardMoney_main,
+            'rewardMoney_sub': q.rewardMoney_sub,
+            'reward_main': q.reward_main,
+            'reward_sub': q.reward_sub,
         })
 
     print("Get - Quest data")

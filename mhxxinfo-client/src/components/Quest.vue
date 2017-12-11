@@ -5,9 +5,17 @@
                 <h2>
                     {{ quest.questName }}
                 </h2>
-                {{ quest.contents }}
-                {{ quest.condition }}
-                {{ quest.reward }}
+                {{ quest.rating }}
+                <!-- {{ quest.contents }} -->
+                {{ quest.questMap }}
+                <!-- {{ quest.questTime }} -->
+                {{ quest.condition_main }}
+                <!-- {{ quest.condition_sub }}
+                {{ quest.down_payment }}
+                {{ quest.rewardMoney_main }}
+                {{ quest.rewardMoney_sub }}
+                {{ quest.reward_main }}
+                {{ quest.reward_sub }} -->
             </li>
         </ul>
     </div>
@@ -22,10 +30,18 @@ export default {
         return {
             quests: [
                 {
-                    'questName': '',
-                    'contents': '',
-                    'condition': '',
-                    'reward': '',
+                    'questName': 'empty',
+                    'rating': 'empty',
+                    'contents': 'empty',
+                    'questMap': 'empty',
+                    'questTime': 'empty',
+                    'condition_main': 'empty',
+                    'condition_sum': 'empty',
+                    'down_payment': 'empty',
+                    'rewardMoney_main': 'empty',
+                    'rewardMoney_sub': 'empty',
+                    'reward_main': 'empty',
+                    'reward_sub': 'empty'
                 }
             ]
         }
