@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from quest.views import getQuestList
 from quest.views import getQuest
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^quests/$', getQuestList, name='getQuestList'),
     url(r'^quest/$', getQuest, name='getQuest'),
 ]

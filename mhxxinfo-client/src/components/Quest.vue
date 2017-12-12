@@ -6,16 +6,8 @@
                     {{ quest.questName }}
                 </h2>
                 {{ quest.rating }}
-                <!-- {{ quest.contents }} -->
                 {{ quest.questMap }}
-                <!-- {{ quest.questTime }} -->
                 {{ quest.condition_main }}
-                <!-- {{ quest.condition_sub }}
-                {{ quest.down_payment }}
-                {{ quest.rewardMoney_main }}
-                {{ quest.rewardMoney_sub }}
-                {{ quest.reward_main }}
-                {{ quest.reward_sub }} -->
             </li>
         </ul>
     </div>
@@ -32,32 +24,24 @@ export default {
                 {
                     'questName': 'empty',
                     'rating': 'empty',
-                    'contents': 'empty',
                     'questMap': 'empty',
-                    'questTime': 'empty',
                     'condition_main': 'empty',
-                    'condition_sum': 'empty',
-                    'down_payment': 'empty',
-                    'rewardMoney_main': 'empty',
-                    'rewardMoney_sub': 'empty',
-                    'reward_main': 'empty',
-                    'reward_sub': 'empty'
                 }
             ]
         }
     },
     methods: {
-        fetchQeusts: function () {
-            axios.get('http://localhost:8000/quest').then((response) => {
+        fetchQuests: function () {
+            axios.get('http://localhost:8000/quests').then((response) => {
                 this.quests = response.data
-                // console.log(response)
+                console.log(response)
             }, (error) => {
                 console.log(error)
             })
         }
     },
     mounted: function () {
-        this.fetchQeusts()
+        this.fetchQuests()
     }
 }
 </script>

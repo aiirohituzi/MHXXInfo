@@ -3,10 +3,37 @@ from django.http import HttpResponse
 from quest.models import Quest
 import json
 
+def getQuestList(request):
+    data = []
+    rating = request.GET.get('rating', False)
+
+    if not rating:
+        return HttpResponse('False')
+
+    for q in Quest.objects.filter(rating=rating):
+        data.append({
+            'id': q.id,
+            'questName': q.questName,
+            'questMap': q.questMap,
+            'condition_main': q.condition_main,
+        })
+
+    print("Get - Quest List")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
 def getQuest(request):
     data = []
-    
-    for q in Quest.objects.all():
+    questId = request.GET.get('id', False)
+
+    if not questId:
+        return HttpResponse('False')
+
+    for q in Quest.objects.filter(id=questId):
         data.append({
             'id': q.id,
             'questName': q.questName,
