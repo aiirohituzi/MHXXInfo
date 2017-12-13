@@ -17,5 +17,6 @@ export default new Router({
       name: 'Quest',
       component: Quest
     }
-  ]
+  ],
+  linkActiveClass: "active"
 })
