@@ -4,6 +4,7 @@
             <li class="list-group-item">
                 <h2>
                     {{ quest.questName }}
+                    {{ quest.questName_kr }}
                 </h2>
                 {{ quest.rating }}
                 {{ quest.questMap }}
@@ -23,6 +24,7 @@ export default {
             quests: [
                 {
                     'questName': 'empty',
+                    'questName_kr': 'empty',
                     'rating': 'empty',
                     'questMap': 'empty',
                     'condition_main': 'empty',

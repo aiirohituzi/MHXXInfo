@@ -14,6 +14,7 @@ def getQuestList(request):
         data.append({
             'id': q.id,
             'questName': q.questName,
+            'questName_kr': q.questName_kr,
             'questMap': q.questMap,
             'condition_main': q.condition_main,
         })
@@ -37,6 +38,7 @@ def getQuest(request):
         data.append({
             'id': q.id,
             'questName': q.questName,
+            'questName_kr': q.questName_kr,
             'rating': q.rating,
             'contents': q.contents,
             'questMap': q.questMap,

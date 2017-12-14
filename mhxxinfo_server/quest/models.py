@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Quest(models.Model):
     questName = models.CharField(max_length=30)
+    questName_kr = models.CharField(max_length=30)
 
     rating = models.CharField(max_length=8)
     contents = models.CharField(max_length=200, null=True)
