@@ -6,7 +6,8 @@ import json
 def getQuestList(request):
     data = []
     rating = request.GET.get('rating', False)
-
+    # print(rating)
+    
     if not rating:
         return HttpResponse('False')
 

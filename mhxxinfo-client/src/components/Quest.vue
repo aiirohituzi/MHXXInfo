@@ -1,5 +1,15 @@
 <template>
     <div class="container">
+        <div class="pull-left">
+            <button v-if="(this.rating != '마을★1') && (this.rating != undefined)" class="btn btn-default" @click="ratingChange('마을★1')">마을★1</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★1')">마을★1</button>
+
+            <button v-if="this.rating != '마을★2'" class="btn btn-default" @click="ratingChange('마을★2')">마을★2</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★2')">마을★2</button>
+
+            <button v-if="this.rating != '마을★3'" class="btn btn-default" @click="ratingChange('마을★3')">마을★3</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★3')">마을★3</button>
+        </div><br><br>
         <ul class="list-group" v-for="quest in quests">
             <li class="list-group-item">
                 <h2>
@@ -21,6 +31,7 @@ export default {
     name: 'Quest',
     data () {
         return {
+            rating: '마을★1',
             quests: [
                 {
                     'questName': 'empty',
@@ -34,13 +45,17 @@ export default {
     },
     methods: {
         fetchQuests: function () {
-            axios.get('http://localhost:8000/quests').then((response) => {
+            axios.get('http://localhost:8000/quests?rating=' + this.rating).then((response) => {
                 this.quests = response.data
                 console.log(response)
             }, (error) => {
                 console.log(error)
             })
-        }
+        },
+        ratingChange: function(rating) {
+            this.rating = rating
+            this.fetchQuests()
+        },
     },
     mounted: function () {
         this.fetchQuests()
