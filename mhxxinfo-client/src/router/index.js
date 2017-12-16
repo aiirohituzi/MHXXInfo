@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
+import Quests from '@/components/Quests'
 import Quest from '@/components/Quest'
 
 Vue.use(Router)
@@ -13,9 +14,15 @@ export default new Router({
       component: Home
     },
     {
-      path: '/quest/',
+      path: '/quests/',
+      name: 'Quests',
+      component: Quests
+    },
+    {
+      path: '/quest/:id',
       name: 'Quest',
-      component: Quest
+      component: Quest,
+      props: true
     }
   ],
   linkActiveClass: "active"

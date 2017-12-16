@@ -16,7 +16,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <router-link tag="li" to="/" exact><a>Home</a></router-link>
-              <router-link tag="li" to="/Quest" exact><a>Quest</a></router-link>
+              <router-link tag="li" to="/Quests" exact><a>Quest</a></router-link>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

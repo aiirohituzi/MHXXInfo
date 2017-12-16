@@ -45,7 +45,7 @@ def getQuest(request):
             'questMap': q.questMap,
             'questTime': q.questTime,
             'condition_main': q.condition_main,
-            'condition_sum': q.condition_sub,
+            'condition_sub': q.condition_sub,
             'down_payment': q.down_payment,
             'rewardMoney_main': q.rewardMoney_main,
             'rewardMoney_sub': q.rewardMoney_sub,
