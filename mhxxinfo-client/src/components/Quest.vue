@@ -1,48 +1,51 @@
 <template>
     <div class="container">
+        <button type="button" class="btn btn-default pull-left" @click="Quests()">
+            <span class="glyphicon glyphicon-triangle-left"></span>
+        </button>
         <h2>
             {{ quests[0].questName }}
             <small>
                 {{ quests[0].questName_kr }}
             </small>
         </h2>
-        <table class="table">
+        <table class="table table-striped">
             <tbody>
-            <tr>
-                <td>등급</td>
-                <td>{{ quests[0].rating }}</td>
-                <td>퀘스트 내용</td>
-                <td>{{ quests[0].contents }}</td>
-            </tr>
-            <tr>
-                <td>맵</td>
-                <td>{{ quests[0].questMap }}</td>
-                <td>제한시간</td>
-                <td>{{ quests[0].questTime }}</td>
-            </tr>
-            <tr>
-                <td>달성조건</td>
-                <td>{{ quests[0].condition_main }}</td>
-                <td>서브 달성조건</td>
-                <td>{{ quests[0].condition_sub }}</td>
-            </tr>
-            <tr>
-                <td>계약금</td>
-                <td>{{ quests[0].down_payment }}z</td>
-                <td colspan="2"></td>
-            </tr>
-            <tr>
-                <td>메인 보수금</td>
-                <td>{{ quests[0].rewardMoney_main }}z</td>
-                <td>서브 보수금</td>
-                <td>{{ quests[0].rewardMoney_sub }}z</td>
-            </tr>
-            <tr>
-                <td>메인 보상</td>
-                <td>{{ quests[0].reward_main }}</td>
-                <td>서브 보상</td>
-                <td>{{ quests[0].reward_sub }}</td>
-            </tr>
+                <tr>
+                    <td>등급</td>
+                    <td align="left">{{ quests[0].rating }}</td>
+                    <td>퀘스트 내용</td>
+                    <td align="left">{{ quests[0].contents }}</td>
+                </tr>
+                <tr>
+                    <td>맵</td>
+                    <td align="left">{{ quests[0].questMap }}</td>
+                    <td>제한시간</td>
+                    <td align="left">{{ quests[0].questTime }}</td>
+                </tr>
+                <tr>
+                    <td>달성조건</td>
+                    <td align="left">{{ quests[0].condition_main }}</td>
+                    <td>서브 달성조건</td>
+                    <td align="left">{{ quests[0].condition_sub }}</td>
+                </tr>
+                <tr>
+                    <td>계약금</td>
+                    <td align="left">{{ quests[0].down_payment }}z</td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>메인 보수금</td>
+                    <td align="left">{{ quests[0].rewardMoney_main }}z</td>
+                    <td>서브 보수금</td>
+                    <td align="left">{{ quests[0].rewardMoney_sub }}z</td>
+                </tr>
+                <tr>
+                    <td>메인 보상</td>
+                    <td align="left">{{ quests[0].reward_main }}</td>
+                    <td>서브 보상</td>
+                    <td align="left">{{ quests[0].reward_sub }}</td>
+                </tr>
             </tbody>
         </table>
     </div>
@@ -83,6 +86,9 @@ export default {
             }, (error) => {
                 console.log(error)
             })
+        },
+        Quests: function () {
+            history.back()
         }
     },
     mounted: function () {
