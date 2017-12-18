@@ -16,6 +16,7 @@ def getQuestList(request):
             'id': q.id,
             'questName': q.questName,
             'questName_kr': q.questName_kr,
+            'rating': q.rating,
             'questMap': q.questMap,
             'condition_main': q.condition_main,
         })

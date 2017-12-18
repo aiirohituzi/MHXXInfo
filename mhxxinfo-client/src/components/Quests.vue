@@ -14,10 +14,12 @@
             <li class="list-group-item" @click="questDetail(quest.id)">
                 <h2>
                     {{ quest.questName }}
-                    {{ quest.questName_kr }}
+                    <small>
+                        {{ quest.questName_kr }}
+                    </small>
                 </h2>
-                {{ quest.rating }}
-                {{ quest.questMap }}
+                {{ quest.rating }} / 
+                {{ quest.questMap }} / 
                 {{ quest.condition_main }}
             </li>
         </ul>
