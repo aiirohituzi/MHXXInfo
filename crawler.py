@@ -5,7 +5,7 @@ import json
 import xlsxwriter
 import config
 
-workbook = xlsxwriter.Workbook('data.xlsx')
+workbook = xlsxwriter.Workbook('data_G.xlsx')
 worksheet = workbook.add_worksheet()
 
 chrome_options = Options()
@@ -15,7 +15,7 @@ driver = webdriver.Chrome('./chromedriver/chromedriver', chrome_options=chrome_o
 
 data = []
 
-for num in config.QUESTNUM:
+for num in config.QUESTNUM_G:
     print(num)
     driver.get('http://wiki.mhxg.org/ida/' + num + '.html')
     html = driver.page_source

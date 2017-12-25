@@ -9,6 +9,28 @@
 
             <button v-if="this.rating != '마을★3'" class="btn btn-default" @click="ratingChange('마을★3')">마을★3</button>
             <button v-else class="btn btn-primary" @click="ratingChange('마을★3')">마을★3</button>
+
+            <button v-if="this.rating != '마을★4'" class="btn btn-default" @click="ratingChange('마을★4')">마을★4</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★4')">마을★4</button>
+
+            <button v-if="this.rating != '마을★5'" class="btn btn-default" @click="ratingChange('마을★5')">마을★5</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★5')">마을★5</button>
+
+            <button v-if="this.rating != '마을★6'" class="btn btn-default" @click="ratingChange('마을★6')">마을★6</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★6')">마을★6</button>
+
+            <button v-if="this.rating != '마을★7'" class="btn btn-default" @click="ratingChange('마을★7')">마을★7</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★7')">마을★7</button>
+
+            <button v-if="this.rating != '마을★8'" class="btn btn-default" @click="ratingChange('마을★8')">마을★8</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★8')">마을★8</button>
+
+            <button v-if="this.rating != '마을★9'" class="btn btn-default" @click="ratingChange('마을★9')">마을★9</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★9')">마을★9</button>
+
+            <button v-if="this.rating != '마을★10'" class="btn btn-default" @click="ratingChange('마을★10')">마을★10</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('마을★10')">마을★10</button>
+
         </div><br><br>
         <ul class="list-group" v-for="quest in quests">
             <li class="list-group-item" @click="questDetail(quest.id)">
