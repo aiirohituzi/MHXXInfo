@@ -81,7 +81,6 @@ export default {
             this.fetchQuests()
         },
         questDetail: function (id) {
-            console.log('aaaa')
             this.$router.push({name:'Quest', params:{id:id}})
         },
     },
