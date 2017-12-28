@@ -13,10 +13,10 @@ class Quest(models.Model):
     condition_main = models.CharField(max_length=50)
     condition_sub = models.CharField(max_length=50, null=True)
 
-    down_payment = models.IntegerField()
+    down_payment = models.CharField(max_length=7)
 
-    rewardMoney_main = models.IntegerField()
-    rewardMoney_sub = models.IntegerField(null=True)
+    rewardMoney_main = models.CharField(max_length=7)
+    rewardMoney_sub = models.CharField(max_length=7, null=True)
 
     reward_main = models.CharField(max_length=300)
     reward_sub = models.CharField(max_length=300, null=True)
