@@ -31,14 +31,14 @@
                 </tr>
                 <tr>
                     <td>계약금</td>
-                    <td align="left">{{ quests[0].down_payment }}z</td>
+                    <td align="left">{{ quests[0].down_payment }}</td>
                     <td colspan="2"></td>
                 </tr>
                 <tr>
                     <td>메인 보수금</td>
-                    <td align="left">{{ quests[0].rewardMoney_main }}z</td>
+                    <td align="left">{{ quests[0].rewardMoney_main }}</td>
                     <td>서브 보수금</td>
-                    <td align="left">{{ quests[0].rewardMoney_sub }}z</td>
+                    <td align="left">{{ quests[0].rewardMoney_sub }}</td>
                 </tr>
                 <tr>
                     <td>메인 보상</td>
