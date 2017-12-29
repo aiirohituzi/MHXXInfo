@@ -8,7 +8,7 @@
             </span>
         </div><br>
 
-        <div class="col-xs-12 col-md-12 col-sm-12">
+        <div class="pull-left">
             <button v-if="(this.rating != '마을★1') && (this.rating != undefined)" class="btn btn-default" @click="ratingChange('마을★1')">마을★1</button>
             <button v-else class="btn btn-primary" @click="ratingChange('마을★1')">마을★1</button>
 
@@ -38,6 +38,29 @@
 
             <button v-if="this.rating != '마을★10'" class="btn btn-default" @click="ratingChange('마을★10')">마을★10</button>
             <button v-else class="btn btn-primary" @click="ratingChange('마을★10')">마을★10</button><br><br>
+        </div>
+
+        <div class="pull-left">
+            <button v-if="(this.rating != '집회소★1') && (this.rating != undefined)" class="btn btn-default" @click="ratingChange('집회소★1')">집회소★1</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★1')">집회소★1</button>
+
+            <button v-if="this.rating != '집회소★2'" class="btn btn-default" @click="ratingChange('집회소★2')">집회소★2</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★2')">집회소★2</button>
+
+            <button v-if="this.rating != '집회소★3'" class="btn btn-default" @click="ratingChange('집회소★3')">집회소★3</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★3')">집회소★3</button>
+
+            <button v-if="this.rating != '집회소★4'" class="btn btn-default" @click="ratingChange('집회소★4')">집회소★4</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★4')">집회소★4</button>
+
+            <button v-if="this.rating != '집회소★5'" class="btn btn-default" @click="ratingChange('집회소★5')">집회소★5</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★5')">집회소★5</button>        
+
+            <button v-if="this.rating != '집회소★6'" class="btn btn-default" @click="ratingChange('집회소★6')">집회소★6</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★6')">집회소★6</button>
+
+            <button v-if="this.rating != '집회소★7'" class="btn btn-default" @click="ratingChange('집회소★7')">집회소★7</button>
+            <button v-else class="btn btn-primary" @click="ratingChange('집회소★7')">집회소★7</button><br><br>
         </div>
 
         <ul class="list-group col-xs-12 col-md-12 col-sm-12" v-for="quest in quests">
