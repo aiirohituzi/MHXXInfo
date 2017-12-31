@@ -2,7 +2,7 @@
     <div class="container">
         
         <div class="input-group col-xs-12 col-md-12 col-sm-12">
-            <input type="text" class="form-control" v-model="keyword" v-on:keyup.enter="questSearch(keyword)">
+            <input type="text" placeholder="퀘스트 검색" class="form-control" v-model="keyword" v-on:keyup.enter="questSearch(keyword)">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="questSearch(keyword)"><span class="glyphicon glyphicon-search"></span></button>
             </span>
