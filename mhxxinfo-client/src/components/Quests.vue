@@ -83,8 +83,17 @@
             </div>
         </div>
 
-        <ul class="list-group col-xs-12 col-md-12 col-sm-12" v-for="quest in quests">
-            <li class="list-group-item" @click="questDetail(quest.id)">
+        <div class="pull-right">
+            <button class="btn btn-default">
+                <span class="glyphicon glyphicon-th-list" @click="changeLayout('list')"></span>
+            </button>
+            <button class="btn btn-default">
+                <span class="glyphicon glyphicon-th-large" @click="changeLayout('thumbnail')"></span>
+            </button><br><br>
+        </div>
+
+        <ul class="list-group col-xs-12 col-md-12 col-sm-12" v-if="this.layout == 'list'">
+            <li class="list-group-item" @click="questDetail(quest.id)" v-for="quest in quests">
                 <h2>
                     {{ quest.questName }}
                     <small>
@@ -96,6 +105,21 @@
                 {{ quest.condition_main }}
             </li>
         </ul>
+
+        <div class="row" v-if="this.layout == 'thumbnail'">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail" v-for="quest in quests">
+                        <h3>{{ quest.questName }}
+                            <small>
+                                {{ quest.questName_kr }}
+                            </small>
+                        </h3>
+                        {{ quest.rating }} / 
+                        {{ quest.questMap }} / 
+                        {{ quest.condition_main }}
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -116,7 +140,8 @@ export default {
                     'condition_main': 'empty',
                 }
             ],
-            keyword: null
+            keyword: null,
+            layout: 'thumbnail',
         }
     },
     methods: {
@@ -147,6 +172,10 @@ export default {
                     console.log(error)
                 })
             }
+        },
+        changeLayout: function (layout) {
+            this.layout = layout
+            console.log('aaa')
         }
     },
     mounted: function () {
