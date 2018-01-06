@@ -83,41 +83,42 @@
             </div>
         </div>
 
-        <div class="pull-right">
-            <button class="btn btn-default">
-                <span class="glyphicon glyphicon-th-list" @click="changeLayout('list')"></span>
-            </button>
-            <button class="btn btn-default">
-                <span class="glyphicon glyphicon-th-large" @click="changeLayout('thumbnail')"></span>
-            </button><br><br>
+        <div class="container">
+            <div class="pull-right">
+                <button class="btn btn-default" @click="changeLayout('thumbnail')">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                </button>
+                <button class="btn btn-default" @click="changeLayout('list')">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </button><br><br>
+            </div>
         </div>
 
         <ul class="list-group col-xs-12 col-md-12 col-sm-12" v-if="this.layout == 'list'">
-            <li class="list-group-item" @click="questDetail(quest.id)" v-for="quest in quests">
-                <h2>
+            <a class="list-group-item" @click="questDetail(quest.id)" v-for="quest in quests">
+                <h3>
                     {{ quest.questName }}
                     <small>
                         {{ quest.questName_kr }}
                     </small>
-                </h2>
-                {{ quest.rating }} / 
-                {{ quest.questMap }} / 
-                {{ quest.condition_main }}
-            </li>
+                </h3>
+            </a>
         </ul>
-
+        
         <div class="row" v-if="this.layout == 'thumbnail'">
-            <div class="col-sm-6 col-md-4">
-                <div class="thumbnail" v-for="quest in quests">
-                        <h3>{{ quest.questName }}
+            <div class="col-sm-6 col-md-4" @click="questDetail(quest.id)" v-for="quest in quests">
+                <a class="thumbnail">
+                    <div class="caption">
+                        <h3>{{ quest.questName }}<br>
                             <small>
                                 {{ quest.questName_kr }}
                             </small>
                         </h3>
-                        {{ quest.rating }} / 
-                        {{ quest.questMap }} / 
+                        {{ quest.rating }}
+                        {{ quest.questMap }}<br>
                         {{ quest.condition_main }}
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -148,7 +149,7 @@ export default {
         fetchQuests: function () {
             axios.get('http://localhost:8000/quests?rating=' + this.rating).then((response) => {
                 this.quests = response.data
-                console.log(response)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
@@ -175,7 +176,7 @@ export default {
         },
         changeLayout: function (layout) {
             this.layout = layout
-            console.log('aaa')
+            console.log(this.layout)
         }
     },
     mounted: function () {
