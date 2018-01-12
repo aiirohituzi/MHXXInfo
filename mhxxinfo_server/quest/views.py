@@ -86,3 +86,24 @@ def getSearchQuest(request):
     print(data)
     
     return HttpResponse(data, content_type = "application/json")
+
+
+
+def getKeyQuest(request):
+    data = []
+    
+    for q in Quest.objects.filter(keyQuest='1'):
+        data.append({
+            'id': q.id,
+            'questName': q.questName,
+            'questName_kr': q.questName_kr,
+            'rating': q.rating,
+            'questMap': q.questMap,
+            'condition_main': q.condition_main,
+        })
+
+    print("Get - Key Quest")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
