@@ -22,6 +22,7 @@ class Quest(models.Model):
     reward_sub = models.CharField(max_length=300, null=True)
 
     keyQuest = models.CharField(max_length=1, default='0')
+    precedingQuestId = models.CharField(max_length=5, default='0')
 
     def __str__(self):
         return self.questName
