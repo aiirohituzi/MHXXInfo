@@ -53,6 +53,7 @@ def getQuest(request):
             'rewardMoney_sub': q.rewardMoney_sub,
             'reward_main': q.reward_main,
             'reward_sub': q.reward_sub,
+            'precedingQuestId' : q.precedingQuestId,
         })
 
     print("Get - Quest data")

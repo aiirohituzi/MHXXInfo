@@ -41,6 +41,11 @@
                     <td align="left">{{ quests[0].rewardMoney_sub }}</td>
                 </tr>
                 <tr>
+                    <td>선행 퀘스트</td>
+                    <td v-if="quests[0].precedingQuestId == '0'" colspan="3">없음</td>
+                    <td v-else colspan="3" align="left"><a @click="questDetail(quests[0].precedingQuestId)">{{ precedingQuest[0].rating }} {{ precedingQuest[0].questName_kr }}</a></td>
+                </tr>
+                <tr>
                     <td>메인 보상</td>
                     <td align="left">{{ quests[0].reward_main }}</td>
                     <td>서브 보상</td>
@@ -74,8 +79,15 @@ export default {
                     'rewardMoney_sub': 'empty',
                     'reward_main': 'empty',
                     'reward_sub': 'empty',
+                    'precedingQuestId': 'empty',
                 }
-            ]
+            ],
+            precedingQuest: [
+                {
+                    'questName_kr': 'empty',
+                    'rating': 'empty',
+                }
+            ],
         }
     },
     methods: {
@@ -83,13 +95,22 @@ export default {
             axios.get('http://localhost:8000/quest?id=' + this.id).then((response) => {
                 this.quests = response.data
                 console.log(response)
+                axios.get('http://localhost:8000/quest?id=' + this.quests[0].precedingQuestId).then((response) => {
+                    this.precedingQuest = response.data
+                    console.log(response)
+                }, (error) => {
+                    console.log(error)
+                })
             }, (error) => {
                 console.log(error)
             })
         },
         Quests: function () {
             history.back()
-        }
+        },
+        questDetail: function (id) {
+            this.$router.push({name:'Quest', params:{id:id}})
+        },
     },
     mounted: function () {
         this.fetchQuests()
