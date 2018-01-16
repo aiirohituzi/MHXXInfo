@@ -94,10 +94,10 @@ export default {
         fetchQuests: function () {
             axios.get('http://localhost:8000/quest?id=' + this.id).then((response) => {
                 this.quests = response.data
-                console.log(response)
+                // console.log(response)
                 axios.get('http://localhost:8000/quest?id=' + this.quests[0].precedingQuestId).then((response) => {
                     this.precedingQuest = response.data
-                    console.log(response)
+                    // console.log(response)
                 }, (error) => {
                     console.log(error)
                 })
@@ -106,9 +106,11 @@ export default {
             })
         },
         Quests: function () {
-            history.back()
+            this.$router.push({name:'Quests'})
         },
         questDetail: function (id) {
+            this.id = this.quests[0].precedingQuestId
+            this.fetchQuests()
             this.$router.push({name:'Quest', params:{id:id}})
         },
     },
