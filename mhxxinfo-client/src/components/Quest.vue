@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td>선행 퀘스트</td>
-                    <td v-if="quests[0].precedingQuestId == '0'" colspan="3">없음</td>
+                    <td v-if="quests[0].precedingQuestId == '0'" colspan="3" align="left">없음</td>
                     <td v-else colspan="3" align="left"><a @click="questDetail(quests[0].precedingQuestId)">{{ precedingQuest[0].rating }} {{ precedingQuest[0].questName_kr }}</a></td>
                 </tr>
                 <tr>
