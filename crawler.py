@@ -5,8 +5,8 @@ import json
 import xlsxwriter
 import config
 
-# workbook = xlsxwriter.Workbook('data_G.xlsx')
-# worksheet = workbook.add_worksheet()
+workbook = xlsxwriter.Workbook('kariwaza.xlsx')
+worksheet = workbook.add_worksheet()
 
 chrome_options = Options()
 chrome_options.add_argument('headless')
@@ -87,6 +87,9 @@ data = []
 #         'rewardMoney_sub' : rewardMoney_sub[0].text,
 #     })
 
+temp_category = ''
+temp_name = ''
+config.KARIWAZA_NUM.sort()
 for num in config.KARIWAZA_NUM:
     print(num)
     driver.get('http://wiki.mhxg.org/data/1847.html')
@@ -94,9 +97,15 @@ for num in config.KARIWAZA_NUM:
     soup = BeautifulSoup(html, 'html.parser')
 
     if num in config.KARIWAZA_NUM_HEAD:
+        category = soup.select(
+            '#id' + num + ' > td:nth-of-type(1)'
+        )
+        temp_category = category[0].text.replace("\n", "").rstrip().lstrip()
+
         kariwazaName = soup.select(
             '#id' + num + ' > td:nth-of-type(2)'
         )
+        temp_name = kariwazaName[0].text.replace("\n", "").rstrip().lstrip()
 
         level = soup.select(
             '#id' + num + ' > td.c_g.b'
@@ -106,24 +115,37 @@ for num in config.KARIWAZA_NUM:
             '#id' + num + ' > td:nth-of-type(4)'
         )
     else:
-        kariwazaName = soup.select(
-            '#id' + num + ' > td:nth-of-type(1)'
-        )
+        if num in config.KARIWAZA_NUM_LV1:
+            kariwazaName = soup.select(
+                '#id' + num + ' > td:nth-of-type(1)'
+            )
+            temp_name = kariwazaName[0].text.replace("\n", "").rstrip().lstrip()
 
-        level = soup.select(
-            '#id' + num + ' > td.c_g.b'
-        )
-        
-        condition = soup.select(
-            '#id' + num + ' > td:nth-of-type(3)'
-        )
+            level = soup.select(
+                '#id' + num + ' > td.c_g.b'
+            )
+            
+            condition = soup.select(
+                '#id' + num + ' > td:nth-of-type(3)'
+            )
+        else:
+            level = soup.select(
+                '#id' + num + ' > td.c_g.b'
+            )
+            
+            condition = soup.select(
+                '#id' + num + ' > td:nth-of-type(2)'
+            )
 
-    print('name : ' + kariwazaName[0].text.replace("\n", "").rstrip().lstrip())
+
+    print('category : ' + temp_category)
+    print('name : ' + temp_name)
     print('lv : ' + level[0].text.replace("\n", "").rstrip().lstrip())
     print('con : ' + condition[0].text)
 
     data.append({
-        'kariwazaName': kariwazaName[0].text.replace("\n", "").rstrip().lstrip(),
+        'category': temp_category,
+        'kariwazaName': temp_name,
         'level': level[0].text.replace("\n", "").rstrip().lstrip(),
         'condition' : condition[0].text,
     })
@@ -131,8 +153,8 @@ for num in config.KARIWAZA_NUM:
 
 
 driver.close()
-data = json.dumps(data, indent=4)
-print(data)
+# data = json.dumps(data, indent=4)
+# print(data)
 
 
 
@@ -155,8 +177,8 @@ print(data)
 # worksheet.write('H1', 'rewardMoney_main')
 # worksheet.write('I1', 'rewardMoney_sub')
 
-row = 1
-col = 0
+# row = 1
+# col = 0
 
 # for a in (data):
 #     worksheet.write(row, col, a.get('questName'))
@@ -170,4 +192,24 @@ col = 0
 #     worksheet.write(row, col + 8, a.get('rewardMoney_sub'))
 #     row += 1
 
-# workbook.close()
+
+
+worksheet.write('A1', 'category')
+worksheet.write('B1', 'kariwazaName')
+worksheet.write('C1', 'level')
+worksheet.write('D1', 'condition')
+
+row = 1
+col = 0
+
+for a in (data):
+    print(a)
+    worksheet.write(row, col, a.get('category'))
+    worksheet.write(row, col + 1, a.get('kariwazaName'))
+    worksheet.write(row, col + 2, a.get('level'))
+    worksheet.write(row, col + 3, a.get('condition'))
+    row += 1
+
+
+
+workbook.close()

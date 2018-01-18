@@ -15,14 +15,19 @@
 ==================
 수기정보
 각 카테고리 첫 줄
+종류              #id268559 > td:nth-child(1)
 수기명             #id268559 > td:nth-child(2)
 레벨              #id268559 > td.c_g.b
 개방조건            #id268559 > td:nth-child(4)
 
-그 외
+공통, lv1
 수기명             #id268560 > td:nth-child(1)
 레벨              #id268560 > td.c_g.b
 개방조건            #id268560 > td:nth-child(3)
+
+lv2부터
+레벨              #id268560 > td.c_g.b
+개방조건            #id268560 > td:nth-child(2)
 ==================
 
 
