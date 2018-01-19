@@ -89,7 +89,7 @@ data = []
 
 temp_category = ''
 temp_name = ''
-config.KARIWAZA_NUM.sort()
+# config.KARIWAZA_NUM.sort()
 for num in config.KARIWAZA_NUM:
     print(num)
     driver.get('http://wiki.mhxg.org/data/1847.html')
