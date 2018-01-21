@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Quests from '@/components/Quests'
 import Quest from '@/components/Quest'
+import Kariwaza from '@/components/Kariwaza'
 
 Vue.use(Router)
 
@@ -23,6 +24,11 @@ export default new Router({
       name: 'Quest',
       component: Quest,
       props: true
+    },
+    {
+      path: '/kariwaza/',
+      name: 'Kariwaza',
+      component: Kariwaza
     }
   ],
   linkActiveClass: "active"

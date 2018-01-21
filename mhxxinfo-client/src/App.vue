@@ -17,6 +17,7 @@
             <ul class="nav navbar-nav">
               <router-link tag="li" to="/" exact><a>Home</a></router-link>
               <router-link tag="li" to="/Quests" exact><a>Quest</a></router-link>
+              <router-link tag="li" to="/Kariwaza" exact><a>수기</a></router-link>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
