@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from quest.models import Quest
+from quest.models import Kariwaza
 import json
 from django.db.models import Q
 
@@ -104,6 +105,25 @@ def getKeyQuest(request):
         })
 
     print("Get - Key Quest")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+def getKariwaza(request):
+    data = []
+    
+    for k in Kariwaza.objects.all():
+        data.append({
+            'category': k.category
+            'kariwazaName': k.kariwazaName,
+            'level': k.level,
+            'condition': k.condition,
+        })
+
+    print("Get - Kariwaza")
     data = json.dumps(data, indent=4)
     print(data)
     
