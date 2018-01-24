@@ -2,7 +2,7 @@
     <div class="container">
         
         <div class="input-group col-xs-12 col-md-12 col-sm-12">
-            <input type="text" placeholder="퀘스트 검색" class="form-control" v-model="keyword" v-on:keyup.enter="questSearch(keyword)">
+            <input type="text" placeholder="퀘스트 검색" class="form-control" v-model="keyword" v-on:keyup="questSearch(keyword)">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="questSearch(keyword)"><span class="glyphicon glyphicon-search"></span></button>
             </span>
@@ -184,12 +184,15 @@ export default {
             keyword: null,
             layout: 'thumbnail',
             isActive: [true, false, ],
+            AllQuest: [],
         }
     },
     methods: {
         fetchQuests: function () {
-            axios.get('http://localhost:8000/quests?rating=' + this.category).then((response) => {
+            // axios.get('http://localhost:8000/quests?rating=' + this.category).then((response) => {
+            axios.get('http://localhost:8000/questsAll/').then((response) => {
                 this.quests = response.data
+                this.AllQuest = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
@@ -197,7 +200,14 @@ export default {
         },
         categoryChange: function (category) {
             this.category = category
-            this.fetchQuests()
+            // this.fetchQuests()
+            this.quests = []
+            
+            for(var i=0; i<this.AllQuest.length; i++){
+                if(this.AllQuest[i].rating == category){
+                    this.quests.push(this.AllQuest[i])
+                }
+            }
         },
         questDetail: function (id) {
             this.$router.push({name:'Quest', params:{id:id}})
@@ -207,12 +217,20 @@ export default {
                 this.fetchQuests()
             }
             else{
-                axios.get('http://localhost:8000/searchQuest?keyword=' + keyword).then((response) => {
-                    this.quests = response.data
-                    console.log(response)
-                }, (error) => {
-                    console.log(error)
-                })
+                // axios.get('http://localhost:8000/searchQuest?keyword=' + keyword).then((response) => {
+                //     this.quests = response.data
+                //     console.log(response)
+                // }, (error) => {
+                //     console.log(error)
+                // })
+                this.quests = []
+                for(var i=0; i<this.AllQuest.length; i++){
+                    if((this.AllQuest[i].questName_kr.indexOf(this.keyword) != -1) || (this.AllQuest[i].questName.indexOf(this.keyword) != -1)){
+                        this.quests.push(this.AllQuest[i])
+                        // console.log(this.AllQuest[i].questName)
+                        // console.log(this.AllQuest[i].questName_kr)
+                    }
+                }
             }
         },
         changeLayout: function (layout) {
@@ -236,8 +254,9 @@ export default {
             this.quests = []
             
             for(var i=0; i<this.keyQuests.length; i++){
-                if(this.keyQuests[i].rating == category)
-                this.quests.push(this.keyQuests[i])
+                if(this.keyQuests[i].rating == category){
+                    this.quests.push(this.keyQuests[i])
+                }
             }
         }
     },

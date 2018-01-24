@@ -5,6 +5,27 @@ from quest.models import Kariwaza
 import json
 from django.db.models import Q
 
+def getQuestAllList(request):
+    data = []
+
+    for q in Quest.objects.all():
+        data.append({
+            'id': q.id,
+            'questName': q.questName,
+            'questName_kr': q.questName_kr,
+            'rating': q.rating,
+            'questMap': q.questMap,
+            'condition_main': q.condition_main,
+        })
+
+    print("Get - Quest All List")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
 def getQuestList(request):
     data = []
     rating = request.GET.get('rating', False)

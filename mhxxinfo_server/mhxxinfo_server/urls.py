@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from quest.views import getQuestAllList
 from quest.views import getQuestList
 from quest.views import getQuest
 from quest.views import getSearchQuest
@@ -23,6 +24,7 @@ from quest.views import getKariwaza
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^questsAll/$', getQuestAllList, name='getQuestAllList'),
     url(r'^quests/$', getQuestList, name='getQuestList'),
     url(r'^quest/$', getQuest, name='getQuest'),
     url(r'^searchQuest/$', getSearchQuest, name='getSearchQuest'),
