@@ -29,6 +29,14 @@ class Quest(models.Model):
 
     
 
+class Request(models.Model):
+    requestName = models.CharField(max_length=30)
+    requestName_kr = models.CharField(max_length=30)
+    condition = models.CharField(max_length=50)
+    reward = models.CharField(max_length=100)
+
+
+
 class Kariwaza(models.Model):
     category = models.CharField(max_length=20)
     kariwazaName = models.CharField(max_length=50)
