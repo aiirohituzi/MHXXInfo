@@ -214,7 +214,8 @@ export default {
         },
         questSearch: function (keyword) {
             if(keyword == ''){
-                this.fetchQuests()
+                // this.fetchQuests()
+                this.quests = this.AllQuest
             }
             else{
                 // axios.get('http://localhost:8000/searchQuest?keyword=' + keyword).then((response) => {
