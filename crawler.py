@@ -4,8 +4,9 @@ from selenium.webdriver.chrome.options import Options
 import json
 import xlsxwriter
 import config
+import config_request
 
-workbook = xlsxwriter.Workbook('kariwaza.xlsx')
+workbook = xlsxwriter.Workbook('request.xlsx')
 worksheet = workbook.add_worksheet()
 
 chrome_options = Options()
@@ -15,6 +16,7 @@ driver = webdriver.Chrome('./chromedriver/chromedriver', chrome_options=chrome_o
 
 data = []
 
+#==================================Quest==================================================================
 # for num in config.QUESTNUM_G:
 #     print(num)
 #     driver.get('http://wiki.mhxg.org/ida/' + num + '.html')
@@ -86,69 +88,105 @@ data = []
 #         'rewardMoney_main' : rewardMoney_main[0].text,
 #         'rewardMoney_sub' : rewardMoney_sub[0].text,
 #     })
+#=======================================================================================================================
 
-temp_category = ''
-temp_name = ''
-# config.KARIWAZA_NUM.sort()
-for num in config.KARIWAZA_NUM:
+
+
+#=======================================Kariwaza========================================================================
+# temp_category = ''
+# temp_name = ''
+# # config.KARIWAZA_NUM.sort()
+# for num in config.KARIWAZA_NUM:
+#     print(num)
+#     driver.get('http://wiki.mhxg.org/data/1847.html')
+#     html = driver.page_source
+#     soup = BeautifulSoup(html, 'html.parser')
+
+#     if num in config.KARIWAZA_NUM_HEAD:
+#         category = soup.select(
+#             '#id' + num + ' > td:nth-of-type(1)'
+#         )
+#         temp_category = category[0].text.replace("\n", "").rstrip().lstrip()
+
+#         kariwazaName = soup.select(
+#             '#id' + num + ' > td:nth-of-type(2)'
+#         )
+#         temp_name = kariwazaName[0].text.replace("\n", "").rstrip().lstrip()
+
+#         level = soup.select(
+#             '#id' + num + ' > td.c_g.b'
+#         )
+        
+#         condition = soup.select(
+#             '#id' + num + ' > td:nth-of-type(4)'
+#         )
+#     else:
+#         if num in config.KARIWAZA_NUM_LV1:
+#             kariwazaName = soup.select(
+#                 '#id' + num + ' > td:nth-of-type(1)'
+#             )
+#             temp_name = kariwazaName[0].text.replace("\n", "").rstrip().lstrip()
+
+#             level = soup.select(
+#                 '#id' + num + ' > td.c_g.b'
+#             )
+            
+#             condition = soup.select(
+#                 '#id' + num + ' > td:nth-of-type(3)'
+#             )
+#         else:
+#             level = soup.select(
+#                 '#id' + num + ' > td.c_g.b'
+#             )
+            
+#             condition = soup.select(
+#                 '#id' + num + ' > td:nth-of-type(2)'
+#             )
+
+
+#     print('category : ' + temp_category)
+#     print('name : ' + temp_name)
+#     print('lv : ' + level[0].text.replace("\n", "").rstrip().lstrip())
+#     print('con : ' + condition[0].text)
+
+#     data.append({
+#         'category': temp_category,
+#         'kariwazaName': temp_name,
+#         'level': level[0].text.replace("\n", "").rstrip().lstrip(),
+#         'condition' : condition[0].text,
+#     })
+#=============================================================================================================
+
+#=================================================Request=====================================================
+for num in config_request.REQUEST_NUM:
     print(num)
-    driver.get('http://wiki.mhxg.org/data/1847.html')
+    driver.get('http://wiki.mhxg.org/data/2824.html')
     html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
 
-    if num in config.KARIWAZA_NUM_HEAD:
-        category = soup.select(
-            '#id' + num + ' > td:nth-of-type(1)'
-        )
-        temp_category = category[0].text.replace("\n", "").rstrip().lstrip()
+    requestName = soup.select(
+        '#id' + num + ' > td.b > a'
+    )
 
-        kariwazaName = soup.select(
-            '#id' + num + ' > td:nth-of-type(2)'
-        )
-        temp_name = kariwazaName[0].text.replace("\n", "").rstrip().lstrip()
+    condition = soup.select(
+        '#id' + num + ' > td:nth-of-type(2)'
+        #id313290 > td:nth-child(2)
+    )
 
-        level = soup.select(
-            '#id' + num + ' > td.c_g.b'
-        )
-        
-        condition = soup.select(
-            '#id' + num + ' > td:nth-of-type(4)'
-        )
-    else:
-        if num in config.KARIWAZA_NUM_LV1:
-            kariwazaName = soup.select(
-                '#id' + num + ' > td:nth-of-type(1)'
-            )
-            temp_name = kariwazaName[0].text.replace("\n", "").rstrip().lstrip()
+    reward = soup.select(
+        '#id' + num + ' > td:nth-of-type(3)'
+    )
 
-            level = soup.select(
-                '#id' + num + ' > td.c_g.b'
-            )
-            
-            condition = soup.select(
-                '#id' + num + ' > td:nth-of-type(3)'
-            )
-        else:
-            level = soup.select(
-                '#id' + num + ' > td.c_g.b'
-            )
-            
-            condition = soup.select(
-                '#id' + num + ' > td:nth-of-type(2)'
-            )
-
-
-    print('category : ' + temp_category)
-    print('name : ' + temp_name)
-    print('lv : ' + level[0].text.replace("\n", "").rstrip().lstrip())
-    print('con : ' + condition[0].text)
+    print('requestName : ' + requestName[0].text)
+    print('condition : ' + condition[0].text.rstrip().lstrip())
+    print('reward : ' + reward[0].text.rstrip().lstrip())
 
     data.append({
-        'category': temp_category,
-        'kariwazaName': temp_name,
-        'level': level[0].text.replace("\n", "").rstrip().lstrip(),
-        'condition' : condition[0].text,
+        'requestName': requestName[0].text,
+        'condition': condition[0].text.rstrip().lstrip(),
+        'reward': reward[0].text.rstrip().lstrip(),
     })
+#=============================================================================================================
 
 
 
@@ -194,20 +232,36 @@ driver.close()
 
 
 
-worksheet.write('A1', 'category')
-worksheet.write('B1', 'kariwazaName')
-worksheet.write('C1', 'level')
-worksheet.write('D1', 'condition')
+# worksheet.write('A1', 'category')
+# worksheet.write('B1', 'kariwazaName')
+# worksheet.write('C1', 'level')
+# worksheet.write('D1', 'condition')
+
+# row = 1
+# col = 0
+
+# for a in (data):
+#     print(a)
+#     worksheet.write(row, col, a.get('category'))
+#     worksheet.write(row, col + 1, a.get('kariwazaName'))
+#     worksheet.write(row, col + 2, a.get('level'))
+#     worksheet.write(row, col + 3, a.get('condition'))
+#     row += 1
+
+
+
+worksheet.write('A1', 'requestName')
+worksheet.write('B1', 'condition')
+worksheet.write('C1', 'reward')
 
 row = 1
 col = 0
 
 for a in (data):
     print(a)
-    worksheet.write(row, col, a.get('category'))
-    worksheet.write(row, col + 1, a.get('kariwazaName'))
-    worksheet.write(row, col + 2, a.get('level'))
-    worksheet.write(row, col + 3, a.get('condition'))
+    worksheet.write(row, col, a.get('requestName'))
+    worksheet.write(row, col + 1, a.get('condition'))
+    worksheet.write(row, col + 2, a.get('reward'))
     row += 1
 
 
