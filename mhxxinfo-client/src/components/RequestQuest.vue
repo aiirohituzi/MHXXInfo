@@ -3,18 +3,16 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>종류</th>
-                    <th>수기명</th>
-                    <th>LV</th>
-                    <th>개방 조건</th>
+                    <th>의뢰명</th>
+                    <th>달성조건</th>
+                    <th>보상</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="row in kariwaza">
-                    <td>{{ row.category }}</td>
-                    <td>{{ row.kariwazaName }}</td>
-                    <td>{{ row.level }}</td>
+                <tr v-for="row in requestQuest">
+                    <td>{{ row.requestName }} {{ row.requestName_kr }}</td>
                     <td>{{ row.condition }}</td>
+                    <td>{{ row.reward }}</td>
                 </tr>
             </tbody>
         </table>
@@ -25,23 +23,24 @@
 import axios from 'axios'
 
 export default {
-    name: 'Kariwaza',
+    name: 'RequestQuest',
     data () {
         return {
-            kariwaza: [
+            requestQuest: [
                 {
-                    'category': 'empty',
-                    'kariwazaName': 'empty',
-                    'level': 'empty',
+                    'town': 'empty',
+                    'requestName': 'empty',
+                    'requestName_kr': 'empty',
                     'condition': 'empty',
+                    'reward': 'empty',
                 }
             ]
         }
     },
     methods: {
-        fetchKariwaza: function () {
-            axios.get('http://localhost:8000/kariwaza/').then((response) => {
-                this.kariwaza = response.data
+        fetchRequest: function () {
+            axios.get('http://localhost:8000//').then((response) => {
+                this.requestQuest = response.data
                 // console.log(response)
             }, (error) => {
                 console.log(error)
@@ -49,7 +48,7 @@ export default {
         },
     },
     mounted: function () {
-        this.fetchKariwaza()
+        this.fetchRequest()
     }
 }
 </script>

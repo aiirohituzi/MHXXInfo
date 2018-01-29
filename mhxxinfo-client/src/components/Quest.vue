@@ -91,7 +91,7 @@ export default {
         }
     },
     methods: {
-        fetchQuests: function () {
+        fetchQuest: function () {
             axios.get('http://localhost:8000/quest?id=' + this.id).then((response) => {
                 this.quests = response.data
                 // console.log(response)
@@ -110,12 +110,12 @@ export default {
         },
         questDetail: function (id) {
             this.id = this.quests[0].precedingQuestId
-            this.fetchQuests()
+            this.fetchQuest()
             this.$router.push({name:'Quest', params:{id:id}})
         },
     },
     mounted: function () {
-        this.fetchQuests()
+        this.fetchQuest()
     }
 }
 </script>
