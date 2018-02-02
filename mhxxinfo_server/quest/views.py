@@ -149,3 +149,23 @@ def getKariwaza(request):
     print(data)
     
     return HttpResponse(data, content_type = "application/json")
+
+
+
+def getRequestQuest(request):
+    data = []
+    
+    for r in Request.objects.all():
+        data.append({
+            'town': r.town,
+            'requestName': r.requestName,
+            'requestName_kr': r.requestName_kr,
+            'condition': r.condition,
+            'reward': r.reward,
+        })
+
+    print("Get - Request")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
