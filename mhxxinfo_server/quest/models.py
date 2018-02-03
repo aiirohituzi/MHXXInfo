@@ -33,8 +33,8 @@ class Request(models.Model):
     town = models.CharField(max_length=10)
     requestName = models.CharField(max_length=30)
     requestName_kr = models.CharField(max_length=30)
-    condition = models.CharField(max_length=50)
-    reward = models.CharField(max_length=100)
+    condition = models.TextField()
+    reward = models.TextField()
 
 
 

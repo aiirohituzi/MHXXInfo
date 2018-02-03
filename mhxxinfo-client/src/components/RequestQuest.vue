@@ -10,7 +10,7 @@
             </thead>
             <tbody>
                 <tr v-for="row in requestQuest">
-                    <td>{{ row.requestName }} {{ row.requestName_kr }}</td>
+                    <td>{{ row.requestName_kr }} {{ row.requestName }}</td>
                     <td>{{ row.condition }}</td>
                     <td>{{ row.reward }}</td>
                 </tr>
@@ -39,9 +39,9 @@ export default {
     },
     methods: {
         fetchRequest: function () {
-            axios.get('http://localhost:8000//').then((response) => {
+            axios.get('http://localhost:8000/requestQuest/').then((response) => {
                 this.requestQuest = response.data
-                // console.log(response)
+                console.log(response)
             }, (error) => {
                 console.log(error)
             })
