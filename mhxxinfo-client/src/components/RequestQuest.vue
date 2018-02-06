@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="row in requestQuest" v-if="row.town=='베르나 마을(ベルナ村)'">
-                        <td>{{ row.requestName_kr }} {{ row.requestName }}</td>
+                        <td>{{ row.requestName_kr }}<br>{{ row.requestName }}</td>
                         <td>{{ row.condition }}</td>
                         <td>{{ row.reward }}</td>
                     </tr>
@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="row in requestQuest" v-if="row.town=='코코트 마을(ココット村)'">
-                        <td>{{ row.requestName_kr }} {{ row.requestName }}</td>
+                        <td>{{ row.requestName_kr }}<br>{{ row.requestName }}</td>
                         <td>{{ row.condition }}</td>
                         <td>{{ row.reward }}</td>
                     </tr>
@@ -63,7 +63,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="row in requestQuest" v-if="row.town=='폿케 마을(ポッケ村)'">
-                        <td>{{ row.requestName_kr }} {{ row.requestName }}</td>
+                        <td>{{ row.requestName_kr }}<br>{{ row.requestName }}</td>
                         <td>{{ row.condition }}</td>
                         <td>{{ row.reward }}</td>
                     </tr>
@@ -82,7 +82,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="row in requestQuest" v-if="row.town=='유쿠모 마을(ユクモ村)'">
-                        <td>{{ row.requestName_kr }} {{ row.requestName }}</td>
+                        <td>{{ row.requestName_kr }}<br>{{ row.requestName }}</td>
                         <td>{{ row.condition }}</td>
                         <td>{{ row.reward }}</td>
                     </tr>
@@ -101,7 +101,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="row in requestQuest" v-if="row.town=='그 외(その他)'">
-                        <td>{{ row.requestName_kr }} {{ row.requestName }}</td>
+                        <td>{{ row.requestName_kr }}<br>{{ row.requestName }}</td>
                         <td>{{ row.condition }}</td>
                         <td>{{ row.reward }}</td>
                     </tr>
