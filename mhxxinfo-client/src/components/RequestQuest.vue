@@ -163,4 +163,7 @@ export default {
     top: 60%;
     right: 10px;
 }
+td {
+    white-space: pre;
+}
 </style>
