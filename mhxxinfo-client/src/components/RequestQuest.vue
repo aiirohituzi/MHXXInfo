@@ -164,6 +164,6 @@ export default {
     right: 10px;
 }
 td {
-    white-space: pre;
+    white-space: pre-line;
 }
 </style>
