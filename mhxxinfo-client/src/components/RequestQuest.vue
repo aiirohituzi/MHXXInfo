@@ -2,6 +2,8 @@
     <div class="container">
         
         <div class="btn-group-vertical floating">
+                <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /> TOP</button>
+
                 <button class="btn btn-default" @click="scrollMove('1')">베르나 마을</button>
 
                 <button class="btn btn-default" @click="scrollMove('2')">코코트 마을</button>
@@ -169,8 +171,18 @@ export default {
             }
         },
         scrollMove: function(id){
-            window.scroll(0, this.getOffsetTop(document.getElementById(id)))
-        }
+            if(id==0){
+                window.scroll({
+                    top:0,
+                    behavior: 'smooth'
+                })
+            } else {
+                window.scroll({
+                    top: this.getOffsetTop(document.getElementById(id)),
+                    behavior: 'smooth'
+                })
+            }
+        },
     },
     mounted: function () {
         this.fetchRequest()
