@@ -2,17 +2,17 @@
     <div class="container">
         
         <div class="btn-group-vertical floating">
-                <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /> TOP</button>
+            <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /> TOP</button>
 
-                <button class="btn btn-default" @click="scrollMove('1')">베르나 마을</button>
+            <button class="btn btn-default" @click="scrollMove('1')">베르나 마을</button>
 
-                <button class="btn btn-default" @click="scrollMove('2')">코코트 마을</button>
+            <button class="btn btn-default" @click="scrollMove('2')">코코트 마을</button>
 
-                <button class="btn btn-default" @click="scrollMove('3')">폿케 마을</button>
+            <button class="btn btn-default" @click="scrollMove('3')">폿케 마을</button>
 
-                <button class="btn btn-default" @click="scrollMove('4')">유쿠모 마을</button>
+            <button class="btn btn-default" @click="scrollMove('4')">유쿠모 마을</button>
 
-                <button class="btn btn-default" @click="scrollMove('5')">그 외</button>
+            <button class="btn btn-default" @click="scrollMove('5')">그 외</button>
         </div>
 
         <div class="panel panel-success" id="1">
