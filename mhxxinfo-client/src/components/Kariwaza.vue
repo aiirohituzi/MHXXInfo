@@ -1,5 +1,10 @@
 <template>
     <div class="container">
+        <div class="btn-group-vertical floating">
+            <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /></button>
+
+            <button class="btn btn-default" @click="scrollMove(1)"><span class="glyphicon glyphicon-chevron-down" /></button>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -47,6 +52,19 @@ export default {
                 console.log(error)
             })
         },
+        scrollMove: function(id){
+            if(id==0){
+                window.scroll({
+                    top:0,
+                    behavior: 'smooth'
+                })
+            } else {
+                window.scroll({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                })
+            }
+        },
     },
     mounted: function () {
         this.fetchKariwaza()
@@ -55,5 +73,9 @@ export default {
 </script>
 
 <style>
-
+.floating {
+    position: fixed;
+    top: 80%;
+    right: 10px;
+}
 </style>
