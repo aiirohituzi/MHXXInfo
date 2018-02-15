@@ -1,5 +1,10 @@
 <template>
     <div class="container">
+
+        <div class="btn-group-vertical floating">
+            <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /></button>
+            <button class="btn btn-default" @click="scrollMove(1)"><span class="glyphicon glyphicon-chevron-down" /></button>
+        </div>
         
         <div class="input-group col-xs-12 col-md-12 col-sm-12">
             <input type="text" placeholder="퀘스트 검색" class="form-control" v-model="keyword" v-on:keyup="questSearch(keyword)">
@@ -17,7 +22,7 @@
 
         <div class="col-xs-12 col-md-12 col-sm-12">
             <div class="pull-left">
-                <button v-if="(this.category != '마을★1') && (this.category != undefined)" class="btn btn-default" @click="categoryChange('마을★1')">마을★1</button>
+                <button v-if="this.category != '마을★1'" class="btn btn-default" @click="categoryChange('마을★1')">마을★1</button>
                 <button v-else class="btn btn-primary" @click="categoryChange('마을★1')">마을★1</button>
 
                 <button v-if="this.category != '마을★2'" class="btn btn-default" @click="categoryChange('마을★2')">마을★2</button>
@@ -170,7 +175,7 @@ export default {
     name: 'Quests',
     data () {
         return {
-            category: '마을★1',
+            category: '',
             quests: [
                 {
                     'questName': 'empty',
@@ -268,5 +273,9 @@ export default {
 </script>
 
 <style>
-
+.floating {
+    position: fixed;
+    top: 80%;
+    right: 10px;
+}
 </style>
