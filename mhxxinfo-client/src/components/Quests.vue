@@ -264,7 +264,20 @@ export default {
                     this.quests.push(this.keyQuests[i])
                 }
             }
-        }
+        },
+        scrollMove: function(id){
+            if(id==0){
+                window.scroll({
+                    top:0,
+                    behavior: 'smooth'
+                })
+            } else {
+                window.scroll({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                })
+            }
+        },
     },
     mounted: function () {
         this.fetchQuests()

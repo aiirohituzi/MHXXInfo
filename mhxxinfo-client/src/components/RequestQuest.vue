@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         
-        <div class="btn-group-vertical floating">
+        <div class="btn-group-vertical floatingMenu">
             <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /> TOP</button>
 
             <button class="btn btn-default" @click="scrollMove('1')">베르나 마을</button>
@@ -191,7 +191,7 @@ export default {
 </script>
 
 <style>
-.floating {
+.floatingMenu {
     position: fixed;
     top: 60%;
     right: 10px;
