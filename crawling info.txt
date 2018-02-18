@@ -36,6 +36,15 @@ lv2부터
 달성조건        #id313290 > td:nth-child(2)
 보수          #id313290 > td:nth-child(3)
 
+=======================
+
+스킬 정보
+http://wiki.mhxg.org/ida/'스킬페이지번호'.html
+스킬계통        #main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(2)
+발동스킬        #main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(3) > span
+포인트         #main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(4) > span
+효과          #main_1 > div > div.row_x > div.col-md-10 > div > table:nth-child(1) > tbody > tr:nth-child(2) > td:nth-child(5) > span
+
 
 
 
