@@ -3,8 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import json
 import xlsxwriter
-import config
-import config_request
+import config_skill
 
 # workbook = xlsxwriter.Workbook('request.xlsx')
 # worksheet = workbook.add_worksheet()
@@ -16,98 +15,226 @@ driver = webdriver.Chrome('./chromedriver/chromedriver', chrome_options=chrome_o
 
 data = []
 
-# for num in config_request.REQUEST_NUM:
-# print(num)
-driver.get('http://wiki.mhxg.org/ida/183613.html')
-html = driver.page_source
-soup = BeautifulSoup(html, 'html.parser')
+for num in config_skill.SKILL_NUM:
+    print(num)
+    driver.get('http://wiki.mhxg.org/ida/' + num + '.html')
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
 
-skillType = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(2)'
-)
+    skillName = ''
+    point = ''
+    effect = ''
 
-skillName1 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(3) > span'
-)
-skillName2 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1) > span'
-)
-skillName3 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(1) > span'
-)
-skillName4 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(1) > span'
-)
-skillName5 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(1) > span'
-)
-skillName6 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(7) > td:nth-of-type(1) > span'
-)
+    skillType = soup.select(
+        '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(2)'
+    )
 
-point1 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(4) > span'
-)
-point2 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > span'
-)
-point3 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > span'
-)
-point4 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > span'
-)
-point5 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(2) > span'
-)
-point6 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(7) > td:nth-of-type(2) > span'
-)
+    skillName1 = soup.select(
+        '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(3) > span'
+    )
+    point1 = soup.select(
+        '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(4) > span'
+    )
+    effect1 = soup.select(
+        '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(5) > span'
+    )
 
-effect1 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(2) > td:nth-of-type(5) > span'
-)
-effect2 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(3) > span'
-)
-effect3 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(3) > span'
-)
-effect4 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(3) > span'
-)
-effect5 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(3) > span'
-)
-effect6 = soup.select(
-    '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(7) > td:nth-of-type(3) > span'
-)
+    skillName = skillName1[0].text
+    point = point1[0].text
+    effect = effect1[0].text
+
+    if num in config_skill.SKILL_TWO_NUM:
+        skillName2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1) > span'
+        )
+        point2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > span'
+        )
+        effect2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(3) > span'
+        )
+        skillName = skillName + '\n' + skillName2[0].text
+        point = point + '\n' + point2[0].text
+        effect = effect + '\n' + effect2[0].text
+
+    if num in config_skill.SKILL_THREE_NUM:
+        skillName2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1) > span'
+        )
+        point2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > span'
+        )
+        effect2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(3) > span'
+        )
+        skillName3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(1) > span'
+        )
+        point3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > span'
+        )
+        effect3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(3) > span'
+        )
+        skillName = skillName + '\n' + skillName2[0].text + '\n' + skillName3[0].text
+        point = point + '\n' + point2[0].text + '\n' + point3[0].text
+        effect = effect + '\n' + effect2[0].text + '\n' + effect3[0].text
+
+    if num in config_skill.SKILL_FOUR_NUM:
+        skillName2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1) > span'
+        )
+        point2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > span'
+        )
+        effect2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(3) > span'
+        )
+        skillName3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(1) > span'
+        )
+        point3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > span'
+        )
+        effect3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(3) > span'
+        )
+        skillName4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(1) > span'
+        )
+        point4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > span'
+        )
+        effect4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(3) > span'
+        )
+        skillName = skillName + '\n' + skillName2[0].text + '\n' + skillName3[0].text + '\n' + skillName4[0].text
+        point = point + '\n' + point2[0].text + '\n' + point3[0].text + '\n' + point4[0].text
+        effect = effec + '\n' + effect2[0].text + '\n' + effect3[0].text + '\n' + effect4[0].text
+
+    if num in config_skill.SKILL_FIVE_NUM:
+        skillName2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1) > span'
+        )
+        point2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > span'
+        )
+        effect2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(3) > span'
+        )
+        skillName3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(1) > span'
+        )
+        point3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > span'
+        )
+        effect3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(3) > span'
+        )
+        skillName4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(1) > span'
+        )
+        point4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > span'
+        )
+        effect4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(3) > span'
+        )
+        skillName5 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(1) > span'
+        )
+        point5 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(2) > span'
+        )
+        effect5 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(3) > span'
+        )
+        skillName = skillName + '\n' + skillName2[0].text + '\n' + skillName3[0].text + '\n' + skillName4[0].text + '\n' + skillName5[0].text
+        point = point + '\n' + point2[0].text + '\n' + point3[0].text + '\n' + point4[0].text + '\n' + point5[0].text
+        effect = effect + '\n' + effect2[0].text + '\n' + effect3[0].text + '\n' + effect4[0].text + '\n' + effect5[0].text
+
+    if num in config_skill.SKILL_SIX_NUM:
+        skillName2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(1) > span'
+        )
+        point2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > span'
+        )
+        effect2 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(3) > td:nth-of-type(3) > span'
+        )
+        skillName3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(1) > span'
+        )
+        point3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > span'
+        )
+        effect3 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(4) > td:nth-of-type(3) > span'
+        )
+        skillName4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(1) > span'
+        )
+        point4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > span'
+        )
+        effect4 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(5) > td:nth-of-type(3) > span'
+        )
+        skillName5 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(1) > span'
+        )
+        point5 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(2) > span'
+        )
+        effect5 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(6) > td:nth-of-type(3) > span'
+        )
+        skillName6 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(7) > td:nth-of-type(1) > span'
+        )
+        point6 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(7) > td:nth-of-type(2) > span'
+        )
+        effect6 = soup.select(
+            '#main_1 > div > div.row_x > div.col-md-10 > div > table:nth-of-type(1) > tbody > tr:nth-of-type(7) > td:nth-of-type(3) > span'
+        )
+        skillName = skillName + '\n' + skillName2[0].text + '\n' + skillName3[0].text + '\n' + skillName4[0].text + '\n' + skillName5[0].text + '\n' + skillName6[0].text
+        point = point + '\n' + point2[0].text + '\n' + point3[0].text + '\n' + point4[0].text + '\n' + point5[0].text + '\n' + point6[0].text
+        effect = eeffect + '\n' + effect2[0].text + '\n' + effect3[0].text + '\n' + effect4[0].text + '\n' + effect5[0].text + '\n' + effect6[0].text
 
 
-print('skillType : ' + skillType[0].text.rstrip().lstrip())
-print('skillName1 : ' + skillName1[0].text)
-print('skillName2 : ' + skillName2[0].text)
-print('skillName3 : ' + skillName3[0].text)
-print('skillName4 : ' + skillName4[0].text)
-print('skillName5 : ' + skillName5[0].text)
-print('skillName6 : ' + skillName6[0].text)
-print('point1 : ' + point1[0].text)
-print('point2 : ' + point2[0].text)
-print('point3 : ' + point3[0].text)
-print('point4 : ' + point4[0].text)
-print('point5 : ' + point5[0].text)
-print('point6 : ' + point6[0].text)
-print('effect1 : ' + effect1[0].text)
-print('effect2 : ' + effect2[0].text)
-print('effect3 : ' + effect3[0].text)
-print('effect4 : ' + effect4[0].text)
-print('effect5 : ' + effect5[0].text)
-print('effect6 : ' + effect6[0].text)
+
+
+
+    print('skillType : ' + skillType[0].text.rstrip().lstrip())
+    print('skillName : ' + skillName)
+    print('point : ' + point)
+    print('effect : ' + effect)
+    # print('skillName1 : ' + skillName1[0].text)
+    # print('skillName2 : ' + skillName2[0].text)
+    # print('skillName3 : ' + skillName3[0].text)
+    # print('skillName4 : ' + skillName4[0].text)
+    # print('skillName5 : ' + skillName5[0].text)
+    # print('skillName6 : ' + skillName6[0].text)
+    # print('point1 : ' + point1[0].text)
+    # print('point2 : ' + point2[0].text)
+    # print('point3 : ' + point3[0].text)
+    # print('point4 : ' + point4[0].text)
+    # print('point5 : ' + point5[0].text)
+    # print('point6 : ' + point6[0].text)
+    # print('effect1 : ' + effect1[0].text)
+    # print('effect2 : ' + effect2[0].text)
+    # print('effect3 : ' + effect3[0].text)
+    # print('effect4 : ' + effect4[0].text)
+    # print('effect5 : ' + effect5[0].text)
+    # print('effect6 : ' + effect6[0].text)
 
     # data.append({
-    #     'requestName': requestName[0].text,
-    #     'condition': condition[0].text.rstrip().lstrip(),
-    #     'reward': reward[0].text.rstrip().lstrip(),
+    #     'skillType': skillType[0].text.rstrip().lstrip(),
+    #     'skillName': skillName[0].text,
+    #     'point': point[0].text,
+    #     'effect1': effect[0].text
     # })
 
 
@@ -150,7 +277,7 @@ driver.close()
 #     worksheet.write(row, col + 6, a.get('down_payment'))
 #     worksheet.write(row, col + 7, a.get('rewardMoney_main'))
 #     worksheet.write(row, col + 8, a.get('rewardMoney_sub'))
-#     row += 1
+#     row = 1
 
 
 
@@ -168,7 +295,7 @@ driver.close()
 #     worksheet.write(row, col + 1, a.get('kariwazaName'))
 #     worksheet.write(row, col + 2, a.get('level'))
 #     worksheet.write(row, col + 3, a.get('condition'))
-#     row += 1
+#     row = 1
 
 
 
@@ -184,7 +311,7 @@ driver.close()
 #     worksheet.write(row, col, a.get('requestName'))
 #     worksheet.write(row, col + 1, a.get('condition'))
 #     worksheet.write(row, col + 2, a.get('reward'))
-#     row += 1
+#     row = 1
 
 
 
