@@ -43,3 +43,11 @@ class Kariwaza(models.Model):
     kariwazaName = models.CharField(max_length=50)
     level = models.CharField(max_length=5)
     condition = models.CharField(max_length=100)
+
+
+
+class Skill(models.Model):
+    skillType = models.CharField(max_length=30)
+    skillName = models.CharField(max_length=200)
+    point = models.CharField(max_length=25)
+    effect = models.CharField(max_length=500)
