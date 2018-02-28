@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from quest.models import Quest
 from quest.models import Kariwaza
 from quest.models import Request
+from quest.models import Skill
 import json
 from django.db.models import Q
 
@@ -166,6 +167,25 @@ def getRequestQuest(request):
         })
 
     print("Get - Request")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+def getSkill(request):
+    data = []
+    
+    for s in Skill.objects.all():
+        data.append({
+            'skillType': s.skillType,
+            'skillName': s.skillName,
+            'point': s.point,
+            'effect': s.effect,
+        })
+
+    print("Get - Skill")
     data = json.dumps(data, indent=4)
     print(data)
     
