@@ -5,6 +5,7 @@ import Quests from '@/components/Quests'
 import Quest from '@/components/Quest'
 import Kariwaza from '@/components/Kariwaza'
 import RequestQuest from '@/components/RequestQuest'
+import Skill from '@/components/Skill'
 
 Vue.use(Router)
 
@@ -35,6 +36,11 @@ export default new Router({
       path: '/requestQuest/',
       name: 'RequestQuest',
       component: RequestQuest
+    },
+    {
+      path: '/skill/',
+      name: 'Skill',
+      component: Skill
     }
   ],
   linkActiveClass: "active"

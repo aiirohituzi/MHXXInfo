@@ -19,6 +19,7 @@
               <router-link tag="li" to="/Quests" exact><a>Quest</a></router-link>
               <router-link tag="li" to="/Kariwaza" exact><a>수기</a></router-link>
               <router-link tag="li" to="/requestQuest" exact><a>마을사람 의뢰</a></router-link>
+              <router-link tag="li" to="/skill" exact><a>스킬 정보</a></router-link>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
