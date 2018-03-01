@@ -1,11 +1,36 @@
 <template>
+    <div class="container">
+        <div class="btn-group-vertical floating">
+            <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /></button>
+
+            <button class="btn btn-default" @click="scrollMove(1)"><span class="glyphicon glyphicon-chevron-down" /></button>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>계통</th>
+                    <th>발동 스킬</th>
+                    <th>포인트</th>
+                    <th>스킬 효과</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in skill">
+                    <td>{{ row.skillType }}</td>
+                    <td>{{ row.skillName }}</td>
+                    <td>{{ row.point }}</td>
+                    <td>{{ row.effect }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
 import axios from 'axios'
 
 export default {
-    name: 'Kariwaza',
+    name: 'Skill',
     data () {
         return {
             skill: [
@@ -27,6 +52,19 @@ export default {
                 console.log(error)
             })
         },
+        scrollMove: function(id){
+            if(id==0){
+                window.scroll({
+                    top:0,
+                    behavior: 'smooth'
+                })
+            } else {
+                window.scroll({
+                    top: document.documentElement.scrollHeight,
+                    behavior: 'smooth'
+                })
+            }
+        }
     },
     mounted: function () {
         this.fetchSkill()
@@ -35,4 +73,9 @@ export default {
 </script>
 
 <style>
+.floating {
+    position: fixed;
+    top: 80%;
+    right: 10px;
+}
 </style>
