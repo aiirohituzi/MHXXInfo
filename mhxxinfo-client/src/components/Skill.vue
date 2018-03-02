@@ -8,10 +8,10 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>계통</th>
-                    <th>발동 스킬</th>
-                    <th>포인트</th>
-                    <th>스킬 효과</th>
+                    <th class="stype">계통</th>
+                    <th class="sname">발동 스킬</th>
+                    <th class="spoint">포인트</th>
+                    <th class="seffect">스킬 효과</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,7 +19,7 @@
                     <td>{{ row.skillType }}</td>
                     <td>{{ row.skillName }}</td>
                     <td>{{ row.point }}</td>
-                    <td>{{ row.effect }}</td>
+                    <td class="align-left">{{ row.effect }}</td>
                 </tr>
             </tbody>
         </table>
@@ -77,5 +77,23 @@ export default {
     position: fixed;
     top: 80%;
     right: 10px;
+}
+td {
+    white-space: pre-line;
+}
+.stype {
+    width: 10%;
+}
+.sname {
+    width: 20%;
+}
+.spoint {
+    width: 6%;
+}
+.seffect {
+    width: 65%;
+}
+.align-left {
+    text-align: left;
 }
 </style>
