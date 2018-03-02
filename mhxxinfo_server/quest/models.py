@@ -48,6 +48,6 @@ class Kariwaza(models.Model):
 
 class Skill(models.Model):
     skillType = models.CharField(max_length=30)
-    skillName = models.CharField(max_length=200)
-    point = models.CharField(max_length=25)
-    effect = models.CharField(max_length=500)
+    skillName = models.TextField()
+    point = models.TextField()
+    effect = models.TextField()
