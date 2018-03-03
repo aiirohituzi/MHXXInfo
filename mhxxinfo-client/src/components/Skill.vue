@@ -5,6 +5,14 @@
 
             <button class="btn btn-default" @click="scrollMove(1)"><span class="glyphicon glyphicon-chevron-down" /></button>
         </div>
+
+        <div class="input-group col-xs-12 col-md-12 col-sm-12">
+            <input type="text" placeholder="스킬 검색" class="form-control" v-model="keyword" v-on:keyup="skillSearch(keyword)">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" @click="skillSearch(keyword)"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+        </div><br>
+
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -40,13 +48,16 @@ export default {
                     'point': 'empty',
                     'effect': 'empty',
                 }
-            ]
+            ],
+            AllSkill: [],
+            keyword: null,
         }
     },
     methods: {
         fetchSkill: function () {
             axios.get('http://localhost:8000/skill/').then((response) => {
                 this.skill = response.data
+                this.AllSkill = response.data
                 console.log(response)
             }, (error) => {
                 console.log(error)
@@ -63,6 +74,21 @@ export default {
                     top: document.documentElement.scrollHeight,
                     behavior: 'smooth'
                 })
+            }
+        },
+        skillSearch: function (keyword) {
+            if(keyword == ''){
+                this.skill = this.AllSkill
+            }
+            else{
+                this.skill = []
+                for(var i=0; i<this.AllSkill.length; i++){
+                    if((this.AllSkill[i].skillType.indexOf(this.keyword) != -1) || (this.AllSkill[i].skillName.indexOf(this.keyword) != -1)){
+                        this.skill.push(this.AllSkill[i])
+                        // console.log(this.AllSkill[i].questName)
+                        // console.log(this.AllSkill[i].questName_kr)
+                    }
+                }
             }
         }
     },
