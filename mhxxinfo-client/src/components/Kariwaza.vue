@@ -19,7 +19,7 @@
                     <td>{{ row.category }}</td>
                     <td>{{ row.kariwazaName }}</td>
                     <td>{{ row.level }}</td>
-                    <td>{{ row.condition }}</td>
+                    <td class="align-left">{{ row.condition }}</td>
                 </tr>
             </tbody>
         </table>
@@ -77,5 +77,8 @@ export default {
     position: fixed;
     top: 80%;
     right: 10px;
+}
+.align-left {
+    text-align: left;
 }
 </style>
