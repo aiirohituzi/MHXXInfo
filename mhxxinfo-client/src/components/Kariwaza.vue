@@ -1,5 +1,22 @@
 <template>
     <div class="container">
+        <div class="btn-group">
+            <button class="btn btn-default">공통</button>
+            <button class="btn btn-default">대검</button>
+            <button class="btn btn-default">태도</button>
+            <button class="btn btn-default">한손검</button>
+            <button class="btn btn-default">쌍검</button>
+            <button class="btn btn-default">해머</button>
+            <button class="btn btn-default">수렵적</button>
+            <button class="btn btn-default">랜스</button>
+            <button class="btn btn-default">건랜스</button>
+            <button class="btn btn-default">슬래시 액스</button>
+            <button class="btn btn-default">차지 액스</button>
+            <button class="btn btn-default">조충곤</button>
+            <button class="btn btn-default">라이트 보우건</button>
+            <button class="btn btn-default">헤비 보우건</button>
+            <button class="btn btn-default">활</button>
+        </div>
         <div class="btn-group-vertical floating">
             <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /></button>
 
@@ -40,12 +57,14 @@ export default {
                     'level': 'empty',
                     'condition': 'empty',
                 }
-            ]
+            ],
+            AllKariwaza: []
         }
     },
     methods: {
         fetchKariwaza: function () {
             axios.get('http://localhost:8000/kariwaza/').then((response) => {
+                this.AllKariwaza = response.data
                 this.kariwaza = response.data
                 // console.log(response)
             }, (error) => {
