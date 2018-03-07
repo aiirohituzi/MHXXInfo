@@ -140,6 +140,7 @@ def getKariwaza(request):
     
     for k in Kariwaza.objects.all():
         data.append({
+            'id': k.id,
             'category': k.category,
             'kariwazaName': k.kariwazaName,
             'level': k.level,
