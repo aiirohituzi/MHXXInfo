@@ -1,21 +1,25 @@
 <template>
     <div class="container">
-        <div class="btn-group floating-bottom">
-            <button class="btn btn-default" @click="scrollMove(1)">공통</button>
-            <button class="btn btn-default" @click="scrollMove(11)">대검</button>
-            <button class="btn btn-default" @click="scrollMove(23)">태도</button>
-            <button class="btn btn-default" @click="scrollMove(35)">한손검</button>
-            <button class="btn btn-default" @click="scrollMove(47)">쌍검</button>
-            <button class="btn btn-default" @click="scrollMove(59)">해머</button>
-            <button class="btn btn-default" @click="scrollMove(71)">수렵적</button>
-            <button class="btn btn-default" @click="scrollMove(83)">랜스</button>
-            <button class="btn btn-default" @click="scrollMove(95)">건랜스</button>
-            <button class="btn btn-default" @click="scrollMove(107)">슬래시 액스</button>
-            <button class="btn btn-default" @click="scrollMove(119)">차지 액스</button>
-            <button class="btn btn-default" @click="scrollMove(131)">조충곤</button>
-            <button class="btn btn-default" @click="scrollMove(143)">라이트 보우건</button>
-            <button class="btn btn-default" @click="scrollMove(155)">헤비 보우건</button>
-            <button class="btn btn-default" @click="scrollMove(167)">활</button>
+        <div class="floating-bottom">
+            <div class="btn-group">
+                <button class="btn btn-default" @click="scrollMove(1)">공통</button>
+                <button class="btn btn-default" @click="scrollMove(11)">대검</button>
+                <button class="btn btn-default" @click="scrollMove(23)">태도</button>
+                <button class="btn btn-default" @click="scrollMove(35)">한손검</button>
+                <button class="btn btn-default" @click="scrollMove(47)">쌍검</button>
+                <button class="btn btn-default" @click="scrollMove(59)">해머</button>
+                <button class="btn btn-default" @click="scrollMove(71)">수렵적</button>
+                <button class="btn btn-default" @click="scrollMove(83)">랜스</button>
+                <button class="btn btn-default" @click="scrollMove(95)">건랜스</button>
+            </div><br>
+            <div class="btn-group">
+                <button class="btn btn-default" @click="scrollMove(107)">슬래시 액스</button>
+                <button class="btn btn-default" @click="scrollMove(119)">차지 액스</button>
+                <button class="btn btn-default" @click="scrollMove(131)">조충곤</button>
+                <button class="btn btn-default" @click="scrollMove(143)">라이트 보우건</button>
+                <button class="btn btn-default" @click="scrollMove(155)">헤비 보우건</button>
+                <button class="btn btn-default" @click="scrollMove(167)">활</button>
+            </div>
         </div>
         <div class="btn-group-vertical floating">
             <button class="btn btn-default" @click="scrollMove(-1)"><span class="glyphicon glyphicon-chevron-up" /></button>
@@ -39,6 +43,7 @@
                 </tr>
             </tbody>
         </table>
+        <br><br>
     </div>
 </template>
 
@@ -110,7 +115,7 @@ export default {
 <style>
 .floating {
     position: fixed;
-    top: 80%;
+    top: 70%;
     right: 10px;
 }
 .floating-bottom {
