@@ -7,6 +7,21 @@ from quest.models import Skill
 import json
 from django.db.models import Q
 
+def getAllSearch(request):
+    data = []
+
+    #
+    #
+    #
+
+    print("Get - All Search")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json") 
+
+
+
 def getQuestAllList(request):
     data = []
 
