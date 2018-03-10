@@ -10,9 +10,38 @@ from django.db.models import Q
 def getAllSearch(request):
     data = []
 
-    #
-    #
-    #
+    keyword = request.GET.get('keyword', False)
+    
+    if not keyword:
+        return HttpResponse('False')
+
+    for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
+        data.append({
+            'category': 'Quest',
+            'id': q.id,
+            'result': q.questName_kr + '(' + q.questName+ ')',
+        })
+
+    for k in Kariwaza.objects.filter(Q(kariwazaName__icontains=keyword)):
+        data.append({
+            'category': 'Kariwaza',
+            'id': k.id,
+            'result': k.kariwazaName,
+        })
+
+    for r in Request.objects.filter(Q(requestName__icontains=keyword) | Q(requestName_kr__icontains=keyword)):
+        data.append({
+            'category': 'Request',
+            'id': r.id,
+            'result': r.requestName_kr + '(' + r.requestName + ')',
+        })
+
+    for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName_kr__icontains=keyword) | Q(effect__icontains=keyword)):
+        data.append({
+            'category': 'Skill',
+            'id': s.id,
+            'result': s.skillType + ' / ' + s.skillName + ' / ' + s.effect,
+        })
 
     print("Get - All Search")
     data = json.dumps(data, indent=4)
