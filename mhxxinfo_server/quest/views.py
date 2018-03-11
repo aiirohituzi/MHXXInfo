@@ -47,7 +47,7 @@ def getAllSearch(request):
     data = json.dumps(data, indent=4)
     print(data)
     
-    return HttpResponse(data, content_type = "application/json") 
+    return HttpResponse(data, content_type = "application/json")
 
 
 
