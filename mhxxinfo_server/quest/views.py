@@ -13,7 +13,7 @@ def getAllSearch(request):
     keyword = request.GET.get('keyword', False)
     
     if not keyword:
-        return HttpResponse('False')
+        return HttpResponse(data, content_type = "application/json")
 
     for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
         data.append({
@@ -36,7 +36,7 @@ def getAllSearch(request):
             'result': r.requestName_kr + '(' + r.requestName + ')',
         })
 
-    for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName_kr__icontains=keyword) | Q(effect__icontains=keyword)):
+    for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName__icontains=keyword) | Q(effect__icontains=keyword)):
         data.append({
             'category': 'Skill',
             'id': s.id,

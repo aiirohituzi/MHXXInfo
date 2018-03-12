@@ -23,6 +23,7 @@ from quest.views import getKeyQuest
 from quest.views import getKariwaza
 from quest.views import getRequestQuest
 from quest.views import getSkill
+from quest.views import getAllSearch
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -34,4 +35,5 @@ urlpatterns = [
     url(r'^kariwaza/$', getKariwaza, name='getKariwaza'),
     url(r'^requestQuest/$', getRequestQuest, name='getRequestQuest'),
     url(r'^skill/$', getSkill, name='getSkill'),
+    url(r'^allSearch/$', getAllSearch, name='getAllSearch'),
 ]
