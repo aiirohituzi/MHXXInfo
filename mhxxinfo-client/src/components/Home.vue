@@ -7,7 +7,7 @@
             </span>
         </div><br>
         <div class="list-group">
-            <a href="#" class="list-group-item" v-for="item in result">{{item.result}}}</a>
+            <a href="#" class="list-group-item" v-for="item in result" @click="detail(item.category, item.id)">{{item.result}}</a>
         </div>
     </div>
 </template>
@@ -27,10 +27,15 @@ export default {
         allSearch: function (keyword) {
             axios.get('http://localhost:8000/allSearch/?keyword=' + keyword).then((response) => {
                 this.result = response.data
-                console.log(response)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
+        },
+        detail: function(category, id) {
+            if(category == 'Quest'){
+                this.$router.push({name:'Quest', params:{id:id}})
+            }
         }
     }
 }

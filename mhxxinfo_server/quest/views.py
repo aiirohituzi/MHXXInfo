@@ -235,3 +235,76 @@ def getSkill(request):
     print(data)
     
     return HttpResponse(data, content_type = "application/json")
+
+
+
+def getKariwazaFromId(request):
+    data = []
+    id = request.GET.get('id', False)
+
+    if not id:
+        return HttpResponse('False')
+
+    for k in Kariwaza.objects.filter(id=id):
+        data.append({
+            # 'id': k.id,
+            'category': k.category,
+            'kariwazaName': k.kariwazaName,
+            'level': k.level,
+            'condition': k.condition
+        })
+
+    print("Get - Kariwaza from ID")
+    data = json.dumps(data, indent=4)
+    print(data)
+
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+def getRequestQuestFromId(request):
+    data = []
+    id = request.GET.get('id', False)
+
+    if not id:
+        return HttpResponse('False')
+
+    for r in RequestQuest.objects.filter(id=id):
+        data.append({
+            # 'id': r.id,
+            'town': r.town,
+            'requestName': r.requestName,
+            'requestName_kr': r.requestName_kr,
+            'condition': r.condition,
+            'reward': r.reward
+        })
+
+    print("Get - Request from ID")
+    data = json.dumps(data, indent=4)
+    print(data)
+
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+def getSkillFromId(request):
+    data = []
+    id = request.GET.get('id', False)
+
+    if not id:
+        return HttpResponse('False')
+
+    for s in Skill.objects.filter(id=id):
+        data.append({
+            # 'id': s.id,
+            'skillType': s.skillType,
+            'skillName': s.skillName,
+            'point': s.point,
+            'effect': s.effect
+        })
+
+    print("Get - Skill from ID")
+    data = json.dumps(data, indent=4)
+    print(data)
+
+    return HttpResponse(data, content_type = "application/json")

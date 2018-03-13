@@ -58,7 +58,7 @@ export default {
             axios.get('http://localhost:8000/skill/').then((response) => {
                 this.skill = response.data
                 this.AllSkill = response.data
-                console.log(response)
+                // console.log(response)
             }, (error) => {
                 console.log(error)
             })
