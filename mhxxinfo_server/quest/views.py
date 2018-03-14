@@ -238,7 +238,7 @@ def getSkill(request):
 
 
 
-def getKariwazaFromId(request):
+def getKariwazaById(request):
     data = []
     id = request.GET.get('id', False)
 
@@ -254,7 +254,7 @@ def getKariwazaFromId(request):
             'condition': k.condition
         })
 
-    print("Get - Kariwaza from ID")
+    print("Get - Kariwaza by ID")
     data = json.dumps(data, indent=4)
     print(data)
 
@@ -262,7 +262,7 @@ def getKariwazaFromId(request):
 
 
 
-def getRequestQuestFromId(request):
+def getRequestQuestById(request):
     data = []
     id = request.GET.get('id', False)
 
@@ -279,7 +279,7 @@ def getRequestQuestFromId(request):
             'reward': r.reward
         })
 
-    print("Get - Request from ID")
+    print("Get - Request by ID")
     data = json.dumps(data, indent=4)
     print(data)
 
@@ -287,7 +287,7 @@ def getRequestQuestFromId(request):
 
 
 
-def getSkillFromId(request):
+def getSkillById(request):
     data = []
     id = request.GET.get('id', False)
 
@@ -303,7 +303,7 @@ def getSkillFromId(request):
             'effect': s.effect
         })
 
-    print("Get - Skill from ID")
+    print("Get - Skill by ID")
     data = json.dumps(data, indent=4)
     print(data)
 
