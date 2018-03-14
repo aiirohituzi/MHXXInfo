@@ -33,8 +33,32 @@ export default {
             })
         },
         detail: function(category, id) {
-            if(category == 'Quest'){
-                this.$router.push({name:'Quest', params:{id:id}})
+            switch(category){
+                case 'Quest':
+                    this.$router.push({name:'Quest', params:{id:id}})
+                    break
+                case 'Kariwaza':
+                    axios.get('http://localhost:8000/kariwazaById/?id=' + id).then((response) => {  
+                        console.log(response)
+                    }, (error) => {
+                        console.log(error)
+                    })
+                    break
+                case 'Request':
+                    axios.get('http://localhost:8000/requestQuestById/?id=' + id).then((response) => {  
+                        console.log(response)
+                    }, (error) => {
+                        console.log(error)
+                    })
+                    break
+                case 'Skill':
+                    axios.get('http://localhost:8000/skillById/?id=' + id).then((response) => {  
+                        console.log(response)
+                    }, (error) => {
+                        console.log(error)
+                    })
+                    break
+                default:
             }
         }
     }

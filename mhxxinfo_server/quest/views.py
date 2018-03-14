@@ -269,7 +269,7 @@ def getRequestQuestById(request):
     if not id:
         return HttpResponse('False')
 
-    for r in RequestQuest.objects.filter(id=id):
+    for r in Request.objects.filter(id=id):
         data.append({
             # 'id': r.id,
             'town': r.town,
