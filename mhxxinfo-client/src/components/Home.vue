@@ -7,6 +7,11 @@
             </span>
         </div><br>
 
+        <div v-if="!this.searchFlag">
+            몬스터 헌터 더블 크로스 관련 정보를 수집 및 번역합니다.<br>
+            원하는 정보를 검색해주세요.
+        </div>
+
         <div class="panel panel-info" v-if="this.detailData.active">
             <div class="panel-heading">{{ this.detailData.title }}</div>
             <div class="panel-body multiLine">{{ this.detailData.content }}</div>
@@ -27,6 +32,7 @@ export default {
         return {
             result: [],
             keyword: null,
+            searchFlag: false,
             detailData: {
                 'active': false,
                 'title': null,
@@ -39,6 +45,12 @@ export default {
             axios.get('http://localhost:8000/allSearch/?keyword=' + keyword).then((response) => {
                 this.result = response.data
                 // console.log(response)
+                this.detailData.active = false
+                if(response.data == []){
+                    this.searchFlag = false
+                } else {
+                    this.searchFlag = true
+                }
             }, (error) => {
                 console.log(error)
             })
