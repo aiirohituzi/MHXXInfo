@@ -32,6 +32,7 @@ export default {
         return {
             result: [],
             keyword: null,
+            searchRange: 'all',
             searchFlag: false,
             detailData: {
                 'active': false,
@@ -42,7 +43,7 @@ export default {
     },
     methods: {
         allSearch: function (keyword) {
-            axios.get('http://localhost:8000/allSearch/?keyword=' + keyword).then((response) => {
+            axios.get('http://localhost:8000/allSearch/?keyword=' + keyword + '&searchRange=' + searchRange).then((response) => {
                 this.result = response.data
                 // console.log(response)
                 this.detailData.active = false

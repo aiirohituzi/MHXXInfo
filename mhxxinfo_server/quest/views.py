@@ -10,38 +10,72 @@ from django.db.models import Q
 def getAllSearch(request):
     data = []
 
+    searchRange = request.GET.get('searchRange', False)
     keyword = request.GET.get('keyword', False)
     
     if not keyword:
         return HttpResponse(data, content_type = "application/json")
 
-    for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
-        data.append({
-            'category': 'Quest',
-            'id': q.id,
-            'result': '퀘스트 : ' + q.questName_kr + '(' + q.questName+ ')',
-        })
+    if searchRange == 'all':
+        for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
+            data.append({
+                'category': 'Quest',
+                'id': q.id,
+                'result': '퀘스트 : ' + q.questName_kr + '(' + q.questName+ ')',
+            })
 
-    for k in Kariwaza.objects.filter(Q(kariwazaName__icontains=keyword)):
-        data.append({
-            'category': 'Kariwaza',
-            'id': k.id,
-            'result': '수기 : ' + k.kariwazaName,
-        })
+        for k in Kariwaza.objects.filter(Q(kariwazaName__icontains=keyword)):
+            data.append({
+                'category': 'Kariwaza',
+                'id': k.id,
+                'result': '수기 : ' + k.kariwazaName,
+            })
 
-    for r in Request.objects.filter(Q(requestName__icontains=keyword) | Q(requestName_kr__icontains=keyword)):
-        data.append({
-            'category': 'Request',
-            'id': r.id,
-            'result': '마을의뢰 : ' + r.requestName_kr + '(' + r.requestName + ')',
-        })
+        for r in Request.objects.filter(Q(requestName__icontains=keyword) | Q(requestName_kr__icontains=keyword)):
+            data.append({
+                'category': 'Request',
+                'id': r.id,
+                'result': '마을의뢰 : ' + r.requestName_kr + '(' + r.requestName + ')',
+            })
 
-    for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName__icontains=keyword) | Q(effect__icontains=keyword)):
-        data.append({
-            'category': 'Skill',
-            'id': s.id,
-            'result': '스킬 : ' + s.skillType,
-        })
+        for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName__icontains=keyword) | Q(effect__icontains=keyword)):
+            data.append({
+                'category': 'Skill',
+                'id': s.id,
+                'result': '스킬 : ' + s.skillType,
+            })
+
+    else if searchRange == 'Quest':
+        for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
+            data.append({
+                'category': 'Quest',
+                'id': q.id,
+                'result': '퀘스트 : ' + q.questName_kr + '(' + q.questName+ ')',
+            })
+
+    else if searchRange == 'Kariwaza':
+        for k in Kariwaza.objects.filter(Q(kariwazaName__icontains=keyword)):
+            data.append({
+                'category': 'Kariwaza',
+                'id': k.id,
+                'result': '수기 : ' + k.kariwazaName,
+            })
+
+    else if searchRange == 'Request':
+        for r in Request.objects.filter(Q(requestName__icontains=keyword) | Q(requestName_kr__icontains=keyword)):
+            data.append({
+                'category': 'Request',
+                'id': r.id,
+                'result': '마을의뢰 : ' + r.requestName_kr + '(' + r.requestName + ')',
+            })
+
+    else if searchRange == 'Skill':
+        for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName__icontains=keyword) | Q(effect__icontains=keyword)):
+            data.append({
+                'category': 'Skill',
+                'id': s.id,
+                'result': '스킬 : ' + s.skillType,
+            })
 
     print("Get - All Search")
     data = json.dumps(data, indent=4)
