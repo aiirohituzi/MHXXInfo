@@ -45,7 +45,7 @@ def getAllSearch(request):
                 'result': '스킬 : ' + s.skillType,
             })
 
-    else if searchRange == 'Quest':
+    elif searchRange == 'Quest':
         for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
             data.append({
                 'category': 'Quest',
@@ -53,7 +53,7 @@ def getAllSearch(request):
                 'result': '퀘스트 : ' + q.questName_kr + '(' + q.questName+ ')',
             })
 
-    else if searchRange == 'Kariwaza':
+    elif searchRange == 'Kariwaza':
         for k in Kariwaza.objects.filter(Q(kariwazaName__icontains=keyword)):
             data.append({
                 'category': 'Kariwaza',
@@ -61,7 +61,7 @@ def getAllSearch(request):
                 'result': '수기 : ' + k.kariwazaName,
             })
 
-    else if searchRange == 'Request':
+    elif searchRange == 'Request':
         for r in Request.objects.filter(Q(requestName__icontains=keyword) | Q(requestName_kr__icontains=keyword)):
             data.append({
                 'category': 'Request',
@@ -69,7 +69,7 @@ def getAllSearch(request):
                 'result': '마을의뢰 : ' + r.requestName_kr + '(' + r.requestName + ')',
             })
 
-    else if searchRange == 'Skill':
+    elif searchRange == 'Skill':
         for s in Skill.objects.filter(Q(skillType__icontains=keyword) | Q(skillName__icontains=keyword) | Q(effect__icontains=keyword)):
             data.append({
                 'category': 'Skill',

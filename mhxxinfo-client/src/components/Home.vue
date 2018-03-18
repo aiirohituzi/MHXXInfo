@@ -1,6 +1,16 @@
 <template>
     <div class="container">
         <div class="input-group col-xs-12 col-md-12 col-sm-12">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ dropdownBtn }} <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li @click="dropdownSelect('all', '전체검색')"><a>전체검색</a></li>
+                    <li @click="dropdownSelect('Quest', '퀘스트')"><a>퀘스트</a></li>
+                    <li @click="dropdownSelect('Kariwaza', '수기')"><a>수기</a></li>
+                    <li @click="dropdownSelect('Request', '마을의뢰')"><a>마을의뢰</a></li>
+                    <li @click="dropdownSelect('Skill', '스킬')"><a>스킬</a></li>
+                </ul>
+            </div>
             <input type="text" placeholder="통합 검색" class="form-control" v-model="keyword" v-on:keyup.enter="allSearch(keyword)">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="allSearch(keyword)"><span class="glyphicon glyphicon-search"></span></button>
@@ -31,6 +41,7 @@ export default {
     data () {
         return {
             result: [],
+            dropdownBtn: '전체검색',
             keyword: null,
             searchRange: 'all',
             searchFlag: false,
@@ -99,6 +110,10 @@ export default {
                     break
                 default:
             }
+        },
+        dropdownSelect: function(range, select){
+            this.searchRange=range
+            this.dropdownBtn=select
         }
     }
 }
@@ -108,5 +123,8 @@ export default {
 .multiLine {
     white-space: pre-line;
     text-align: left;
+}
+.dropdown-toggle{
+    width: 95px;
 }
 </style>
