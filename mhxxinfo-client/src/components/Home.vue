@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class="input-group col-xs-12 col-md-12 col-sm-12">
+
             <div class="input-group-btn">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ dropdownBtn }} <span class="caret"></span></button>
                 <ul class="dropdown-menu" role="menu">
@@ -11,6 +12,14 @@
                     <li @click="dropdownSelect('Skill', '스킬')"><a>스킬</a></li>
                 </ul>
             </div>
+
+            <div class="input-group-btn" v-if="this.searchRange != 'all'">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{ dropdownBtn_sub_Select }} <span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    <li v-for="item in dropdownBtn_sub" @click="dropdownSelect_sub(item)"><a>{{ item }}</a></li>
+                </ul>
+            </div>
+
             <input type="text" placeholder="통합 검색" class="form-control" v-model="keyword" v-on:keyup.enter="allSearch(keyword)">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="allSearch(keyword)"><span class="glyphicon glyphicon-search"></span></button>
@@ -42,6 +51,14 @@ export default {
         return {
             result: [],
             dropdownBtn: '전체검색',
+            dropdownBtn_sub: {},
+            dropdownBtn_sub_Select: '조건검색',
+            dropdownBtn_sub_list: {
+                'Quest': ['조건검색', '이름', '등급', '맵', '조건'],
+                'Kariwaza': ['조건검색', '종류', '이름'],
+                'Request': ['조건검색', '의뢰명', '보상'],
+                'Skill': ['조건검색', '계통', '발동 스킬', '효과'],
+            },
             keyword: null,
             searchRange: 'all',
             searchFlag: false,
@@ -54,7 +71,7 @@ export default {
     },
     methods: {
         allSearch: function (keyword) {
-            axios.get('http://localhost:8000/allSearch/?keyword=' + keyword + '&searchRange=' + searchRange).then((response) => {
+            axios.get('http://localhost:8000/allSearch/?keyword=' + keyword + '&searchRange=' + this.searchRange).then((response) => {
                 this.result = response.data
                 // console.log(response)
                 this.detailData.active = false
@@ -114,6 +131,24 @@ export default {
         dropdownSelect: function(range, select){
             this.searchRange=range
             this.dropdownBtn=select
+            switch(range){
+                case 'Quest':
+                    this.dropdownBtn_sub = this.dropdownBtn_sub_list.Quest
+                    break
+                case 'Kariwaza':
+                    this.dropdownBtn_sub = this.dropdownBtn_sub_list.Kariwaza
+                    break
+                case 'Request':
+                    this.dropdownBtn_sub = this.dropdownBtn_sub_list.Request
+                    break
+                case 'Skill':
+                    this.dropdownBtn_sub = this.dropdownBtn_sub_list.Skill
+                    break
+            }
+            this.dropdownBtn_sub_Select = '조건검색'
+        },
+        dropdownSelect_sub: function(select){
+            this.dropdownBtn_sub_Select = select
         }
     }
 }
