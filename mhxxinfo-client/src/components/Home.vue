@@ -84,6 +84,20 @@ export default {
                 console.log(error)
             })
         },
+        detailedSearch: function () {
+            axios.get('http://localhost:8000//?keyword=' + keyword + '&searchRange=' + this.searchRange).then((response) => {
+                this.result = response.data
+                // console.log(response)
+                this.detailData.active = false
+                if(response.data == []){
+                    this.searchFlag = false
+                } else {
+                    this.searchFlag = true
+                }
+            }, (error) => {
+                console.log(error)
+            })
+        },
         detail: function(category, id) {
             switch(category){
                 case 'Quest':
@@ -125,7 +139,6 @@ export default {
                         console.log(error)
                     })
                     break
-                default:
             }
         },
         dropdownSelect: function(range, select){

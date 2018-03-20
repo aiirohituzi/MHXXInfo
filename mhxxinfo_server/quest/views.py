@@ -85,6 +85,37 @@ def getAllSearch(request):
 
 
 
+def getSearchQuest(request):
+    data = []
+
+    searchRange = request.GET.get('searchRange', False)
+    keyword = request.GET.get('keyword', False)
+    
+    if not keyword:
+        return HttpResponse('False')
+
+    if searchRange == 'name'
+        for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
+            data.append({
+                'id': q.id,
+                'questName': q.questName,
+                'questName_kr': q.questName_kr,
+                'rating': q.rating,
+                'questMap': q.questMap,
+                'condition_main': q.condition_main,
+            })
+    elif searchRange == 'rating'
+    elif searchRange == 'map'
+    elif searchRange == 'condition'
+
+    print("Get - Search Quest")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
 def getQuestAllList(request):
     data = []
 
@@ -159,32 +190,6 @@ def getQuest(request):
         })
 
     print("Get - Quest data")
-    data = json.dumps(data, indent=4)
-    print(data)
-    
-    return HttpResponse(data, content_type = "application/json")
-
-
-
-def getSearchQuest(request):
-    data = []
-    keyword = request.GET.get('keyword', False)
-    # print(keyword)
-    
-    if not keyword:
-        return HttpResponse('False')
-
-    for q in Quest.objects.filter(Q(questName__icontains=keyword) | Q(questName_kr__icontains=keyword)):
-        data.append({
-            'id': q.id,
-            'questName': q.questName,
-            'questName_kr': q.questName_kr,
-            'rating': q.rating,
-            'questMap': q.questMap,
-            'condition_main': q.condition_main,
-        })
-
-    print("Get - Search Quest")
     data = json.dumps(data, indent=4)
     print(data)
     
