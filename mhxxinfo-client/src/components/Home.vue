@@ -20,7 +20,7 @@
                 </ul>
             </div>
 
-            <input type="text" placeholder="통합 검색" class="form-control" v-model="keyword" v-on:keyup.enter="allSearch(keyword)">
+            <input type="text" placeholder="통합 검색" class="form-control" v-model="keyword" v-on:keyup.enter="search(keyword)">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" @click="allSearch(keyword)"><span class="glyphicon glyphicon-search"></span></button>
             </span>
@@ -59,8 +59,10 @@ export default {
                 'Request': ['조건검색', '의뢰명', '보상'],
                 'Skill': ['조건검색', '계통', '발동 스킬', '효과'],
             },
+            condition: null,
             keyword: null,
             searchRange: 'all',
+            searchRange_sub: '',
             searchFlag: false,
             detailData: {
                 'active': false,
@@ -70,6 +72,13 @@ export default {
         }
     },
     methods: {
+        search: function (keyword) {
+            if(this.condition == ''){
+                this.allSearch(keyword)
+            } else {
+                this.detailedSearch(this.condition, keyword)
+            }
+        },
         allSearch: function (keyword) {
             axios.get('http://localhost:8000/allSearch/?keyword=' + keyword + '&searchRange=' + this.searchRange).then((response) => {
                 this.result = response.data
@@ -84,8 +93,8 @@ export default {
                 console.log(error)
             })
         },
-        detailedSearch: function () {
-            axios.get('http://localhost:8000//?keyword=' + keyword + '&searchRange=' + this.searchRange).then((response) => {
+        detailedSearch: function (condition, keyword) {
+            axios.get('http://localhost:8000/search' + condition + '/?keyword=' + keyword + '&searchRange=' + this.searchRange_sub).then((response) => {
                 this.result = response.data
                 // console.log(response)
                 this.detailData.active = false
@@ -147,21 +156,61 @@ export default {
             switch(range){
                 case 'Quest':
                     this.dropdownBtn_sub = this.dropdownBtn_sub_list.Quest
+                    this.condition = 'Quest'
                     break
                 case 'Kariwaza':
                     this.dropdownBtn_sub = this.dropdownBtn_sub_list.Kariwaza
+                    this.condition = 'Kariwaza'
                     break
                 case 'Request':
                     this.dropdownBtn_sub = this.dropdownBtn_sub_list.Request
+                    this.condition = 'Request'
                     break
                 case 'Skill':
                     this.dropdownBtn_sub = this.dropdownBtn_sub_list.Skill
+                    this.condition = 'Skill'
                     break
+                default:
+                    this.condition = ''
             }
             this.dropdownBtn_sub_Select = '조건검색'
         },
         dropdownSelect_sub: function(select){
             this.dropdownBtn_sub_Select = select
+            switch(select){
+                case '이름':
+                    this.searchRange_sub = 'name'
+                    break
+                case '등급':
+                    this.searchRange_sub = 'rating'
+                    break
+                case '맵':
+                    this.searchRange_sub = 'map'
+                    break
+                case '조건':
+                    this.searchRange_sub = 'condition'
+                    break
+                case '종류':
+                    this.searchRange_sub = 'category'
+                    break
+                case '의뢰명':
+                    this.searchRange_sub = 'name'
+                    break
+                case '보상':
+                    this.searchRange_sub = 'reward'
+                    break
+                case '계통':
+                    this.searchRange_sub = 'type'
+                    break
+                case '발동 스킬':
+                    this.searchRange_sub = 'skillName'
+                    break
+                case '효과':
+                    this.searchRange_sub = 'effect'
+                    break
+                default:
+                    this.searchRange_sub = ''
+            }
         }
     }
 }
