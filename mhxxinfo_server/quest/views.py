@@ -131,6 +131,38 @@ def getSearchQuest(request):
 
 
 
+def getSearchKariwaza(request):
+    data = []
+
+    searchRange = request.GET.get('searchRange', False)
+    keyword = request.GET.get('keyword', False)
+    
+    if not keyword:
+        return HttpResponse('False')
+
+    if searchRange == 'category':
+        for k in Kariwaza.objects.filter(Q(category__icontains=keyword)):
+            data.append({
+                'category': 'Kariwaza',
+                'id': k.id,
+                'result': k.category + ' : ' + k.kariwazaName
+            })
+    elif searchRange == 'name':
+        for k in Kariwaza.objects.filter(Q(kariwazaName__icontains=keyword)):
+            data.append({
+                'category': 'Kariwaza',
+                'id': k.id,
+                'result': k.kariwazaName + '(' + k.category+ ')',
+            })
+
+    print("Get - Search kariwaza")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
 def getQuestAllList(request):
     data = []
 
