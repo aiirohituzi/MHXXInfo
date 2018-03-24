@@ -187,7 +187,46 @@ def getSearchRequest(request):
                 'result': r.town + ' : ' + r.requestName_kr + '(' + r.requestName + ')'
             })
 
-    print("Get - Search kariwaza")
+    print("Get - Search Request Quest")
+    data = json.dumps(data, indent=4)
+    print(data)
+    
+    return HttpResponse(data, content_type = "application/json")
+
+
+
+def getSearchSkill(request):
+    data = []
+
+    searchRange = request.GET.get('searchRange', False)
+    keyword = request.GET.get('keyword', False)
+    
+    if not keyword:
+        return HttpResponse('False')
+
+    if searchRange == 'type':
+        for s in Skill.objects.filter(Q(skillType__icontains=keyword)):
+            data.append({
+                'category': 'Skill',
+                'id': s.id,
+                'result': s.skillType
+            })
+    elif searchRange == 'skillName':
+        for s in Skill.objects.filter(Q(skillName__icontains=keyword)):
+            data.append({
+                'category': 'Skill',
+                'id': s.id,
+                'result': s.skillType
+            })
+    elif searchRange == 'effect':
+        for s in Skill.objects.filter(Q(effect__icontains=keyword)):
+            data.append({
+                'category': 'Skill',
+                'id': s.id,
+                'result': s.skillType
+            })
+
+    print("Get - Search Skill")
     data = json.dumps(data, indent=4)
     print(data)
     
