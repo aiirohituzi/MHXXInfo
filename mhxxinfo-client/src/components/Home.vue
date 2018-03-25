@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+        <div class="btn-group-vertical floating" v-if="this.searchFlag">
+            <button class="btn btn-default" @click="scrollMove(0)"><span class="glyphicon glyphicon-chevron-up" /></button>
+
+            <button class="btn btn-default" @click="scrollMove(1)"><span class="glyphicon glyphicon-chevron-down" /></button>
+        </div>
+
         <div class="input-group col-xs-12 col-md-12 col-sm-12">
 
             <div class="input-group-btn">
@@ -223,5 +229,10 @@ export default {
 }
 .dropdown-toggle{
     width: 95px;
+}
+.floating {
+    position: fixed;
+    top: 80%;
+    right: 10px;
 }
 </style>
