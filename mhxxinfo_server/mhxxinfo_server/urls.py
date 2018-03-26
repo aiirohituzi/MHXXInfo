@@ -20,16 +20,18 @@ from quest.views import getQuestList
 from quest.views import getQuest
 from quest.views import getSearchQuest
 from quest.views import getKeyQuest
-from quest.views import getKariwaza
+
+from kariwaza.views import getKariwaza
+from kariwaza.views import getKariwazaById
+from kariwaza.views import getSearchKariwaza
+
 from quest.views import getRequestQuest
 from quest.views import getSkill
 from quest.views import getAllSearch
-from quest.views import getKariwazaById
 from quest.views import getRequestQuestById
 from quest.views import getSkillById
 
 from quest.views import getSearchQuest
-from quest.views import getSearchKariwaza
 from quest.views import getSearchRequest
 from quest.views import getSearchSkill
 
