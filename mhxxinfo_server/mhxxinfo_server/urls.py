@@ -25,14 +25,15 @@ from kariwaza.views import getKariwaza
 from kariwaza.views import getKariwazaById
 from kariwaza.views import getSearchKariwaza
 
-from quest.views import getRequestQuest
+from requestQuest.views import getRequestQuest
+from requestQuest.views import getRequestQuestById
+from requestQuest.views import getSearchRequest
+
 from quest.views import getSkill
 from quest.views import getAllSearch
-from quest.views import getRequestQuestById
 from quest.views import getSkillById
 
 from quest.views import getSearchQuest
-from quest.views import getSearchRequest
 from quest.views import getSearchSkill
 
 urlpatterns = [

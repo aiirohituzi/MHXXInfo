@@ -27,23 +27,6 @@ class Quest(models.Model):
     def __str__(self):
         return self.questName
 
-    
-
-class Request(models.Model):
-    town = models.CharField(max_length=10)
-    requestName = models.CharField(max_length=30)
-    requestName_kr = models.CharField(max_length=30)
-    condition = models.TextField()
-    reward = models.TextField()
-
-
-
-class Kariwaza(models.Model):
-    category = models.CharField(max_length=20)
-    kariwazaName = models.CharField(max_length=50)
-    level = models.CharField(max_length=5)
-    condition = models.CharField(max_length=100)
-
 
 
 class Skill(models.Model):

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from quest.models import Kariwaza
+from kariwaza.models import Kariwaza
 import json
 from django.db.models import Q
 
