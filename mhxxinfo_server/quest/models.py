@@ -26,11 +26,3 @@ class Quest(models.Model):
 
     def __str__(self):
         return self.questName
-
-
-
-class Skill(models.Model):
-    skillType = models.CharField(max_length=30)
-    skillName = models.TextField()
-    point = models.TextField()
-    effect = models.TextField()

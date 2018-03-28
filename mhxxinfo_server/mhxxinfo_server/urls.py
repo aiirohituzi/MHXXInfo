@@ -20,6 +20,8 @@ from quest.views import getQuestList
 from quest.views import getQuest
 from quest.views import getSearchQuest
 from quest.views import getKeyQuest
+from quest.views import getAllSearch
+from quest.views import getSearchQuest
 
 from kariwaza.views import getKariwaza
 from kariwaza.views import getKariwazaById
@@ -29,12 +31,9 @@ from requestQuest.views import getRequestQuest
 from requestQuest.views import getRequestQuestById
 from requestQuest.views import getSearchRequest
 
-from quest.views import getSkill
-from quest.views import getAllSearch
-from quest.views import getSkillById
-
-from quest.views import getSearchQuest
-from quest.views import getSearchSkill
+from skill.views import getSkill
+from skill.views import getSkillById
+from skill.views import getSearchSkill
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
