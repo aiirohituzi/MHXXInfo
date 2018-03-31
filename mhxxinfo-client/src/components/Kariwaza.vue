@@ -113,34 +113,20 @@ export default {
 </script>
 
 <style>
-@media only screen and (max-width: 320px) {
-    .floating {
-        position: fixed;
-        bottom: 50%;
-        right: 1%;
-    }
-    .floating-bottom {
-        position: fixed;
-        right: 1%;
-        bottom: 3%;
-    }
-    .btn-size {
-        /* btn width, height */
-    }
+.floating {
+    position: fixed;
+    bottom: 25%;
+    right: 1%;
 }
-@media only screen and (min-width: 321px) {
-    .floating {
-        position: fixed;
-        bottom: 20%;
-        right: 1%;
-    }
-    .floating-bottom {
-        position: fixed;
-        right: 1%;
-        bottom: 3%;
-    }
+.floating-bottom {
+    position: fixed;
+    right: 1%;
+    bottom: 3%;
 }
 .align-left {
     text-align: left;
+}
+.btn-size {
+    font-size: 1vw;
 }
 </style>
