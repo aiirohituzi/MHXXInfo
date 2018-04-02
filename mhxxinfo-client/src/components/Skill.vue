@@ -106,6 +106,10 @@ export default {
 }
 td {
     white-space: pre-line;
+    font-size: 0.9vw;
+}
+th {
+    font-size: 1vw;
 }
 .stype {
     width: 10%;

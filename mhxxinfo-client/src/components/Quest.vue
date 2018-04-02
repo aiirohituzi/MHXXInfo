@@ -121,4 +121,8 @@ export default {
 </script>
 
 <style>
+td {
+    white-space: pre-line;
+    font-size: 0.9vw;
+}
 </style>
